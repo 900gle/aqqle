@@ -1,6 +1,10 @@
 package com.doo.aqqle.service;
 
 
+import com.doo.aqqle.dto.ExtractGoodsTextDTO;
+import com.doo.aqqle.dto.GoodTextDTO;
+import com.doo.aqqle.repository.Goods;
+import com.doo.aqqle.repository.GoodsRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @Slf4j
@@ -20,36 +23,59 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class AsyncTaskService {
 
-
-
-
+    private final GoodsRepository goodsRepository;
 
     @Async("executor")
-    public CompletableFuture<Integer> task(int i) {
+    public CompletableFuture<Integer> task(int i, int chunk, String directory) {
+        int start = i * chunk;
+        int end = (i + 1) * chunk;
+
+        PageRequest pageRequest = PageRequest.of(start, chunk);
+        Page<Goods> goodsTexts = goodsRepository.findAllByOrderByIdAsc(pageRequest);
+        List<ExtractGoodsTextDTO> extractGoodsTextDTOList = new ArrayList<>();
+
+        goodsTexts.stream().forEach(
+                x -> {
 
 
-        System.out.println(i);
+                    extractGoodsTextDTOList.add(
+                            ExtractGoodsTextDTO.builder()
+                                    .id(x.getId())
+                                    .keyword(x.getKeyword())
+                                    .name(x.getName())
+                                    .brand(x.getBrand())
+                                    .price(x.getPrice())
+                                    .category(x.getCategory())
+                                    .category1(x.getCategory1())
+                                    .category2(x.getCategory2())
+                                    .category3(x.getCategory3())
+                                    .category4(x.getCategory4())
+                                    .category5(x.getCategory5())
+                                    .image(x.getImage())
+//                                    .featureVector(x.getFeatureVector())
+                                    .weight(x.getWeight())
+                                    .popular(x.getPopular())
+                                    .type(x.getType())
+                                    .createdTime(x.getCreatedTime())
+                                    .updatedTime(x.getUpdatedTime())
+                                    .build()
+                    );
+                }
+        );
 
-        List<String> list = new ArrayList<>();
-        list.add("asdf");
+        ObjectMapper objectMapper = new ObjectMapper();
+        GoodTextDTO goodTextDTO = new GoodTextDTO();
+        goodTextDTO.setExtractGoodsTextDTOList(extractGoodsTextDTOList);
 
+        try {
+            String goodsJson = objectMapper.writeValueAsString(goodTextDTO);
+            IndexFileService.createFile(directory + "/indextime_" + i + ".txt", goodsJson);
 
-        return CompletableFuture.supplyAsync(list::size);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return CompletableFuture.supplyAsync(goodsTexts::getSize);
     }
-
-
-
-//
-//
-//    @Async("executor")
-//    public CompletableFuture<Integer> task(int i) {
-//
-//
-//        System.out.println("aaaaaaa");
-//
-//        int size  = 1 + i;
-//
-//        return CompletableFuture.supplyAsync(size);
-//    }
 
 }

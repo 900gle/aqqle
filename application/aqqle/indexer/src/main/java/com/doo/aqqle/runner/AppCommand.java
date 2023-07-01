@@ -4,13 +4,10 @@ package com.doo.aqqle.runner;
 import com.doo.aqqle.service.IndexerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
-import java.util.concurrent.Callable;
-
 import picocli.CommandLine.*;
+
+import java.util.concurrent.Callable;
 
 @Slf4j
 @Component
@@ -22,23 +19,23 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
 
     private final IndexerService indexerService;
-//
-//    @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
-//    Exclusive exclusive;
-//    @CommandLine.Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D ]")
-//    private String type;
+
+    @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
+    Exclusive exclusive;
+    @Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D ]")
+    private String type;
 
     @Override
     public Integer call() throws Exception {
 
-//        switch (type) {
-//            case "S":
+        switch (type) {
+            case "S":
                 indexerService.index("ddd");
-//                break;
-//            case "D":
-//                indexerService.index(type);
-//                break;
-//        }
+                break;
+            case "D":
+                indexerService.index(type);
+                break;
+        }
         return ExitCode.OK;
     }
 
@@ -51,8 +48,8 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
     static class Exclusive {
 
-//        @Option(names = {"-t", "--indexer type"}, required = true, description = "indexer type value")
-//        private boolean isType;
+        @Option(names = {"-t", "--indexer type"}, required = true, description = "indexer type value")
+        private boolean isType;
 
     }
 }

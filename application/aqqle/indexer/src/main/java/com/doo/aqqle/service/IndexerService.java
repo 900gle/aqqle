@@ -1,5 +1,6 @@
 package com.doo.aqqle.service;
 
+import com.doo.aqqle.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class IndexerService {
 
+    private final GoodsRepository goodsRepository;
+
     private final AsyncTaskService asyncTaskService;
 
     private List<CompletableFuture<Integer>> completableFutures = new ArrayList<>();
@@ -24,14 +27,17 @@ public class IndexerService {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         String directory = "/data/static/"+ LocalDateTime.now().format(dateTimeFormatter).toString();
 
+        System.out.println(directory);
         IndexFileService.createDirectory(directory);
+//
+        long count = goodsRepository.count();
+        int chunk = 500;
+        double endPage = Math.ceil(count / chunk);
 
 
-
-        int endPage = 100;
 
         for (int i = 0; i < endPage + 1; i++) {
-            CompletableFuture<Integer> completableFuture = asyncTaskService.task(i);
+            CompletableFuture<Integer> completableFuture = asyncTaskService.task(i, chunk, directory);
             completableFutures.add(completableFuture);
         }
 

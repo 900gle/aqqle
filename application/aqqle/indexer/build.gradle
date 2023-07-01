@@ -9,18 +9,23 @@ def elasticsearchVersion = '8.0.0'
 
 dependencies {
 
+
+    implementation project(':common')
+
+
 // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
 
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
+
+
 //    runtimeOnly 'mysql:mysql-connector-java'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
-
-// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '3.1.0'
 
 
 
@@ -35,11 +40,22 @@ dependencies {
 
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
-    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.10'
-    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
-    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.8.1'
-    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.8.1'
-    implementation project(':common')
+//    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
+//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.10'
+//    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
+//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.8.1'
+//    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+//    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.8.1'
+
+
+//    compile('org.springframework.boot:spring-boot-starter-web')
+//    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'mysql:mysql-connector-java'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
+
 }
