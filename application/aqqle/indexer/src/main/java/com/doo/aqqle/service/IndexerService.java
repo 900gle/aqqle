@@ -1,5 +1,6 @@
 package com.doo.aqqle.service;
 
+import com.doo.aqqle.annotation.IndexerLog;
 import com.doo.aqqle.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class IndexerService {
 
     private List<CompletableFuture<Integer>> completableFutures = new ArrayList<>();
 
+    @IndexerLog
     public void index(String type) {
 
 
@@ -50,6 +52,11 @@ public class IndexerService {
                 e.printStackTrace();
             }
         }
+
+
+    }
+
+    public void symspell(){
 
 
     }

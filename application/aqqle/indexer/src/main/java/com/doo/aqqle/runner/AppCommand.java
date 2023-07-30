@@ -29,7 +29,11 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     public Integer call() throws Exception {
 
         switch (type) {
+
             case "S":
+                indexerService.symspell();
+                break;
+            case "C":
                 indexerService.index("ddd");
                 break;
             case "D":
@@ -47,7 +51,6 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     }
 
     static class Exclusive {
-
         @Option(names = {"-t", "--indexer type"}, required = true, description = "indexer type value")
         private boolean isType;
 
