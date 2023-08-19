@@ -5,7 +5,8 @@ jar {
     enabled = true;
 }
 //def elasticsearchVersion = '8.0.0'
-
+def swaggerVersion = '2.5.0'
+def elasticsearchVersion = '7.15.1'
 dependencies {
     implementation project(':common')
     // https://mvnrepository.com/artifact/io.github.mightguy/symspell-lib
@@ -22,23 +23,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
     implementation group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '3.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
-
-
-
-    // https://mvnrepository.com/artifact/co.elastic.clients/elasticsearch-java
-    implementation group: 'co.elastic.clients', name: 'elasticsearch-java', version: '8.8.1'
-// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
-// https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api
-    implementation group: 'jakarta.json', name: 'jakarta.json-api', version: '2.1.2'
-
-
-
-
-
 //    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
-    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.4'
+//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.10'
 //    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
 //    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.8.1'
 //    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
@@ -53,17 +39,48 @@ dependencies {
     implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
 
 
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
-//    compile('org.springframework.boot:spring-boot-starter-web')
 
-//    testCompile('org.springframework.boot:spring-boot-starter-test')
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'mysql:mysql-connector-java'
+//
+//
+//    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
+//    compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: elasticsearchVersion
+//    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
+//    compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: elasticsearchVersion
+//    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+//    compile group: 'org.elasticsearch', name: 'elasticsearch', version: elasticsearchVersion
+//
+
+    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
+//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.4'
+
+// https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
+//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.8.1'
+
+// https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+//    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.8.1'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.16.1'
+
+
+//    compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
+
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+
+//    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+
+// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+//    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
-    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-//    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
+
+
 }

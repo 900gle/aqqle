@@ -4,7 +4,6 @@ plugins {
     id 'java'
 }
 
-
 repositories {
     mavenCentral()
 }
@@ -12,7 +11,6 @@ repositories {
 bootJar.enabled = false
 
 subprojects {
-
     group = 'com.doo'
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
@@ -36,23 +34,8 @@ subprojects {
 
     // 관리하는 모듈에 공통 dependencies
     dependencies {
-
-// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-//        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.0'
-// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-//        implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '3.1.0'
-        implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-
-        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-
-        // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-//        implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '3.1.0'
         annotationProcessor("jakarta.persistence:jakarta.persistence-api")
         annotationProcessor("jakarta.annotation:jakarta.annotation-api")
-
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -62,41 +45,3 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-
-//
-//
-//plugins {
-//    id 'java'
-//    id 'org.springframework.boot' version '3.1.1'
-//    id 'io.spring.dependency-management' version '1.1.0'
-//}
-//
-//group = 'com.doo'
-//version = '0.0.1-SNAPSHOT'
-//
-//java {
-//    sourceCompatibility = '17'
-//}
-//
-//configurations {
-//    compileOnly {
-//        extendsFrom annotationProcessor
-//    }
-//}
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-//    implementation 'org.springframework.boot:spring-boot-starter-web'
-//    compileOnly 'org.projectlombok:lombok'
-//    annotationProcessor 'org.projectlombok:lombok'
-//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//}
-//
-//tasks.named('test') {
-//    useJUnitPlatform()
-//}

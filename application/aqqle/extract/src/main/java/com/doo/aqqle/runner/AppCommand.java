@@ -1,8 +1,7 @@
 package com.doo.aqqle.runner;
 
 
-import com.doo.aqqle.service.IndexerService;
-import com.doo.aqqle.service.TestIndexService;
+import com.doo.aqqle.service.ExtractService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,7 @@ import java.util.concurrent.Callable;
 public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
 
-    private final IndexerService indexerService;
-    private final TestIndexService testIndexService;
+    private final ExtractService extractService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
     Exclusive exclusive;
@@ -31,16 +29,9 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     public Integer call() throws Exception {
 
         switch (type) {
-            case "C":
-                indexerService.index("ddd");
-                break;
             case "D":
-                indexerService.index(type);
+                extractService.index(type);
                 break;
-            case "T":
-                testIndexService.index();
-                break;
-
         }
         return ExitCode.OK;
     }

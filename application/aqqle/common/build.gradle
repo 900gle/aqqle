@@ -2,6 +2,11 @@ bootJar { enabled = false }
 jar { enabled = true }
 
 dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
     // picocli
     // https://mvnrepository.com/artifact/info.picocli/picocli-spring-boot-starter
     implementation group: 'info.picocli', name: 'picocli-spring-boot-starter', version: '4.7.4'

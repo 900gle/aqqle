@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class IndexerApplication {
+public class ExtractApplication {
     public static void main(String[] args) {
-        SpringApplication.run(IndexerApplication.class, args);
+        SpringApplication.run(ExtractApplication.class, args);
     }
 
 }
