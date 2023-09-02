@@ -23,7 +23,7 @@
 
 ---
 
-## - Architecture - [phase2](https://father-lys.tistory.com/20)
+## - Architecture - [phase.1](https://father-lys.tistory.com/20)
 [![phase4](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTXgpg%2FbtssVXABDhv%2FG6idgvnaXTS5Y1XpocWWHK%2Fimg.png)](https://father-lys.tistory.com/20)
 
 ## - Project directory structure
@@ -115,7 +115,9 @@ docker compose -f kafka-full.yml up -d --build
     * doo : Project root
         * [api - 검색 API](https://ldh-6019.tistory.com/category/900gle%20shopping/api)
         * common - 공통파일
-        * [crawler - 웹사이트의 상품정보를 크롤링](https://ldh-6019.tistory.com/category/900gle%20shopping/crawler)
+        * [crawler - 웹사이트의 정보를 크롤링]
+          * [crawler - 쇼핑데이터](https://father-lys.tistory.com/22)
+          * [crawler - 뉴스데이터](https://father-lys.tistory.com/22)
         * [extract - 크롤링 후 데이터 파일 생성](https://ldh-6019.tistory.com/category/900gle%20shopping/extract)
         * [indexer - DB의 내용을 ES에 색인](https://ldh-6019.tistory.com/category/900gle%20shopping/indexer)
         * [libs - OpenCV lib 파일](https://ldh-6019.tistory.com/category/OpneCV)
