@@ -102,11 +102,18 @@ public class AsyncTaskService {
 
         }
 
+
         BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
+
 
         return CompletableFuture.supplyAsync(()-> {
             return jsonArr.size();
         });
+
+
+//        return CompletableFuture.supplyAsync(()->{
+//            return 1;
+//        });
     }
 
 }
