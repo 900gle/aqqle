@@ -23,7 +23,7 @@ public class ShopRestController {
     @ApiOperation(value = "search", notes = "검색")
     @GetMapping("shop")
     public CommonResult getDatas(
-            @ApiParam(value = "검색어") @RequestParam(value = "searchWord", defaultValue = "나이키", required = true) @Validated final String searchWord
+            @ApiParam(value = "검색어") @RequestParam(value = "searchWord", defaultValue = "몽클레어", required = true) @Validated final String searchWord
     ) {
         return goodsService.getProducts(searchWord);
     }

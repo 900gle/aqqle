@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Vector;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -51,7 +52,7 @@ public class Goods {
     @Column(length = 200, nullable = true)
     private String image;
 
-    @Column(length = 5000, nullable = true)
+    @Column(length = 8000, nullable = true)
     private String featureVector;
 
     @Column(length = 50, nullable = true)

@@ -58,7 +58,7 @@ elasticsearch:
   host: localhost
   port: 9200
   id: elastic
-  password: datalake
+  password: dlengus
 
 
 

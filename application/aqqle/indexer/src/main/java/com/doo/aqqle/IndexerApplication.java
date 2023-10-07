@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class IndexerApplication {
     public static void main(String[] args) {
         SpringApplication.run(IndexerApplication.class, args);
+        System.exit(1);
     }
 
 }

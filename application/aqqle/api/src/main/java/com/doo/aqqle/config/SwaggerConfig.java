@@ -28,8 +28,8 @@ public class SwaggerConfig {
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
                 .title("APIs")
-                .description("revu elasticsearch apis")
-                .license("all rights reserved revu.com")
+                .description("aqqle elasticsearch apis")
+                .license("all rights reserved aqqle.com")
                 .version("v1")
                 .build();
 

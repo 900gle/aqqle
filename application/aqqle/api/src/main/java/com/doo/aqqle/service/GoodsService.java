@@ -4,6 +4,7 @@ package com.doo.aqqle.service;
 import com.doo.aqqle.HostUrl;
 import com.doo.aqqle.component.TextEmbedding;
 import com.doo.aqqle.dto.TextEmbeddingDTO;
+import com.doo.aqqle.enums.ElasticStatic;
 import com.doo.aqqle.model.CommonResult;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.search.SearchRequest;
@@ -28,12 +29,12 @@ public class GoodsService {
 
     private final ResponseService responseService;
     private final RestHighLevelClient client;
-    private final String ALIAS = "goods";
+//    private final String ALIAS = "goods";
 
     public CommonResult getProducts(String searchWord) {
 
         SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices(ALIAS);
+        searchRequest.indices(ElasticStatic.SHOP.getAlias());
         try {
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
@@ -47,6 +48,7 @@ public class GoodsService {
             String[] includeFields = new String[]{};
             String[] excludeFields = new String[]{"feature_vector"};
             searchSourceBuilder.fetchSource(includeFields, excludeFields);
+
 
             Map<String, Object> map = new HashMap<>();
             map.put("query_vector", vectors);
@@ -63,7 +65,7 @@ public class GoodsService {
                                             new Script(
                                                     ScriptType.INLINE,
                                                     Script.DEFAULT_SCRIPT_LANG,
-                                                    "cosineSimilarity(params.query_vector, 'feature_vector') * doc['weight'].value * doc['popular'].value / doc['name.keyword'].length + doc['category.keyword'].length",
+                                                    "cosineSimilarity(params.query_vector, 'feature_vector') + 1.0",
                                                     map)
                                     ).setWeight(0.1f)
                             )
@@ -73,7 +75,7 @@ public class GoodsService {
             searchSourceBuilder.query(functionScoreQueryBuilder);
             searchSourceBuilder.size(8);
             searchRequest.source(searchSourceBuilder);
-
+            System.out.println(searchSourceBuilder);
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
             List<Map<String, Object>> returnValue = new ArrayList<>();

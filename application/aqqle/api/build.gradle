@@ -19,10 +19,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.github.mightguy/symspell-lib
     implementation group: 'io.github.mightguy', name: 'symspell-lib', version: '6.6.154'
-    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    // implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // runtimeOnly 'mysql:mysql-connector-java'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     // picocli
@@ -43,15 +39,9 @@ dependencies {
 
 //    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client
     implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.4'
-//    // https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
-//    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.8.1'
-//    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
-//    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.8.1'
-//    compile('org.springframework.boot:spring-boot-starter-web')
+
 //    testCompile('org.springframework.boot:spring-boot-starter-test')
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation 'mysql:mysql-connector-java'
+
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
     implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
@@ -68,6 +58,4 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
-    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-//    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
 }

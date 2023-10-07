@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class GoodsText {
+public class AqqleGoods {
 
     @Id
     @GeneratedValue
@@ -72,7 +72,7 @@ public class GoodsText {
     private LocalDateTime updatedTime;
 
     @Builder
-    public GoodsText(
+    public AqqleGoods(
             String keyword,
             String name,
             long price,

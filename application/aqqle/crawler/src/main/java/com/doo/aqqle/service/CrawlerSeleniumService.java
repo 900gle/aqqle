@@ -5,9 +5,6 @@ import com.doo.aqqle.component.TextEmbedding;
 import com.doo.aqqle.domain.*;
 import com.doo.aqqle.dto.TextEmbeddingDTO;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CrawlerSeleniumService {
 
-    private final GoodsTextRepository goodsRepository;
+    private final AqqleGoodsRepository goodsRepository;
     private final KeywordsService keywordsService;
 
     private final int CRAWLING_LIMIT = 100;
@@ -87,7 +84,7 @@ public class CrawlerSeleniumService {
                 List<String> categoryLists = categorys.stream().map(x -> x.getText()).collect(Collectors.toList());
 
                 try {
-                    goodsRepository.save(GoodsText.builder()
+                    goodsRepository.save(AqqleGoods.builder()
                                     .keyword(key)
                                     .name(title)
                                     .price(price.equals("") ? 0 : Integer.parseInt(price.replaceAll("[^0-9]", "")))

@@ -4,8 +4,8 @@ package com.doo.aqqle.service;
 import com.doo.aqqle.HostUrl;
 import com.doo.aqqle.component.Site;
 import com.doo.aqqle.component.TextEmbedding;
-import com.doo.aqqle.domain.GoodsText;
-import com.doo.aqqle.domain.GoodsTextRepository;
+import com.doo.aqqle.domain.AqqleGoods;
+import com.doo.aqqle.domain.AqqleGoodsRepository;
 import com.doo.aqqle.dto.TextEmbeddingDTO;
 import com.doo.aqqle.factory.NaverFactory;
 import com.doo.aqqle.factory.SiteFactory;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GoodsService {
 
-    private final GoodsTextRepository goodsRepository;
+    private final AqqleGoodsRepository goodsRepository;
     private final KeywordsService keywordsService;
 
     private final int CRAWLING_LIMIT = 100;
@@ -64,7 +64,7 @@ public class GoodsService {
 
                                     Thread.sleep(1000);
 
-                                    goodsRepository.save(GoodsText.builder()
+                                    goodsRepository.save(AqqleGoods.builder()
                                             .keyword(obj.getKeyword())
                                             .name(title.text())
                                             .price(price.text().equals("") ? 0 : Integer.parseInt(price.text().replaceAll("[^0-9]", "")))

@@ -1,8 +1,8 @@
 package com.doo.aqqle.service;
 
 
-import com.doo.aqqle.domain.GoodsText;
-import com.doo.aqqle.domain.GoodsTextRepository;
+import com.doo.aqqle.domain.AqqleGoods;
+import com.doo.aqqle.domain.AqqleGoodsRepository;
 import com.doo.aqqle.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class GoodsAsyncService {
 
-    private final GoodsTextRepository goodsTextRepository;
+    private final AqqleGoodsRepository aqqleGoodsRepository;
 
     private final GoodsRepository goodsRepository;
 
@@ -51,10 +51,10 @@ public class GoodsAsyncService {
     @Async("executor")
     public CompletableFuture<Integer> task(int i, int chunk, String indexName) {
         PageRequest pageRequest = PageRequest.of(i, chunk);
-        Page<GoodsText> goodsTexts = goodsTextRepository.findAllByOrderByIdAsc(pageRequest);
+        Page<AqqleGoods> goodsTexts = aqqleGoodsRepository.findAllByOrderByIdAsc(pageRequest);
 
 
-        List<GoodsText> goodsTextList = new ArrayList<>();
+        List<AqqleGoods> aqqleGoodsList = new ArrayList<>();
 
         StringBuilder stringBuilder = new StringBuilder();
 

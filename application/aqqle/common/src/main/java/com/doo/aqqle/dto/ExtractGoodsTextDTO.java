@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Vector;
 
 @Getter
 @Builder
@@ -21,7 +23,7 @@ public class ExtractGoodsTextDTO {
     private String category4;
     private String category5;
     private String image;
-    private String featureVector;
+    private List<Double> featureVector;
     private String type;
     private float weight;
     private float popular;

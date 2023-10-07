@@ -8,6 +8,8 @@ public class CrawlerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CrawlerApplication.class, args);
+        System.exit(1);
+
     }
 
 }

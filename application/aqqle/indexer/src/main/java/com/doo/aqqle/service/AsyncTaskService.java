@@ -42,25 +42,21 @@ public class AsyncTaskService {
     private final RestHighLevelClient client;
 
 
-
     private final GoodsRepository goodsRepository;
 
     @Async("executor")
-    public CompletableFuture<Integer> task(String indexName, String file) throws FileNotFoundException, ParseException, IOException{
+    public CompletableFuture<Integer> task(String indexName, String file) throws FileNotFoundException, ParseException, IOException {
 
         JSONParser parser = new JSONParser();
         BulkRequest bulkRequest = new BulkRequest();
-
-
         Reader reader = new FileReader(file);
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
         JSONArray jsonArr = (JSONArray) jsonObject.get("extractGoodsTextDTOList");
 
         if (jsonArr.size() > 0) {
-
-
             for (int j = 0; j < jsonArr.size(); j++) {
+
                 JSONObject jsonObj = (JSONObject) jsonArr.get(j);
 
                 try {
@@ -79,11 +75,11 @@ public class AsyncTaskService {
                         builder.field("category4", (String) jsonObj.get("category4"));
                         builder.field("category5", (String) jsonObj.get("category5"));
                         builder.field("image", (String) jsonObj.get("image"));
-                        builder.field("feature_vector", (String) jsonObj.get("feature_vector"));
+                        builder.field("feature_vector", jsonObj.get("featureVector"));
                         builder.field("weight", (Double) jsonObj.get("weight"));
                         builder.field("popular", (Double) jsonObj.get("popular"));
                         builder.field("type", (String) jsonObj.get("type"));
-                        builder.field("created_time", (String) jsonObj.get("created_time"));
+                        builder.field("created_time", (String) jsonObj.get("createdTime"));
                         builder.field("updated_time", (String) jsonObj.get("updated_time"));
                     }
                     builder.endObject();
@@ -96,15 +92,12 @@ public class AsyncTaskService {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
-
         }
 
         BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
 
-        return CompletableFuture.supplyAsync(()-> {
+        return CompletableFuture.supplyAsync(() -> {
             return jsonArr.size();
         });
     }

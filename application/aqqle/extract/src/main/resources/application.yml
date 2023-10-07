@@ -34,7 +34,7 @@ spring:
       password: doo
       driver-class-name: com.mysql.cj.jdbc.Driver
 server:
-  port: 8085
+  port: 8082
 elasticsearch:
   host: localhost
   port: 9200
@@ -53,7 +53,7 @@ spring:
       password: doo
       driver-class-name: com.mysql.cj.jdbc.Driver
 server:
-  port: 8085
+  port: 8082
 elasticsearch:
   host: localhost
   port: 9200

@@ -8,6 +8,9 @@ import com.doo.aqqle.repository.GoodsRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Async;
@@ -30,6 +33,7 @@ public class AsyncTaskService {
         PageRequest pageRequest = PageRequest.of(i, chunk);
         Page<Goods> goodsTexts = goodsRepository.findAllByOrderByIdAsc(pageRequest);
         List<ExtractGoodsTextDTO> extractGoodsTextDTOList = new ArrayList<>();
+
         try {
             goodsTexts.stream().forEach(
                     x -> {
@@ -47,7 +51,7 @@ public class AsyncTaskService {
                                         .category4(x.getCategory4())
                                         .category5(x.getCategory5())
                                         .image(x.getImage())
-//                                    .featureVector(x.getFeatureVector())
+                                        .featureVector(getFeaturePase(x.getFeatureVector()))
                                         .weight(x.getWeight())
                                         .popular(x.getPopular())
                                         .type(x.getType())
@@ -61,7 +65,6 @@ public class AsyncTaskService {
             ObjectMapper objectMapper = new ObjectMapper();
             GoodTextDTO goodTextDTO = new GoodTextDTO();
             goodTextDTO.setExtractGoodsTextDTOList(extractGoodsTextDTOList);
-
             String goodsJson = objectMapper.writeValueAsString(goodTextDTO);
             IndexFileService.createFile(directory + "/indextime_" + i + ".txt", goodsJson);
 
@@ -70,6 +73,18 @@ public class AsyncTaskService {
         }
 
         return CompletableFuture.supplyAsync(goodsTexts::getSize);
+    }
+
+    private List<Double> getFeaturePase(String s) {
+        List<Double> ret = new ArrayList<>();
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray array = (JSONArray) parser.parse(s);
+            return array;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
 }

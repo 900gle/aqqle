@@ -1,6 +1,7 @@
 package com.doo.aqqle.service;
 
 import com.doo.aqqle.annotation.IndexerLog;
+import com.doo.aqqle.enums.ElasticStatic;
 import com.doo.aqqle.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest;
@@ -49,7 +50,7 @@ public class IndexerService {
     public void index(String type) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH");
-        String indexName = "products-" + LocalDateTime.now().format(dateTimeFormatter).toString();
+        String indexName = ElasticStatic.SHOP.getAlias() + "-" + LocalDateTime.now().format(dateTimeFormatter).toString();
 
         try {
 //            DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(indexName);
@@ -95,7 +96,7 @@ public class IndexerService {
 
             IndicesAliasesRequest.AliasActions aliasActionsAdd = new IndicesAliasesRequest.AliasActions(IndicesAliasesRequest.AliasActions.Type.ADD)
                     .index(indexName)
-                    .alias("shop");
+                    .alias(ElasticStatic.SHOP.getAlias());
 
             indicesAliasesRequest.addAliasAction(aliasActionsAdd);
 

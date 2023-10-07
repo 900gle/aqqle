@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface GoodsTextRepository extends JpaRepository<AqqleGoods, Long> {
+public interface AqqleGoodsRepository extends JpaRepository<AqqleGoods, Long> {
 
     List<AqqleGoods> findAllByUpdatedTimeLessThan(@Param("updatedTime") LocalDateTime updatedTime);
     List<AqqleGoods> findAllByUpdatedTimeGreaterThan(@Param("updatedTime") LocalDateTime updatedTime);

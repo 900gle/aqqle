@@ -27,7 +27,8 @@ class Vector(Resource):
             parser.add_argument('keyword', type=str)
             args = parser.parse_args()
             _keyword = args['keyword']
-            return {'vectors': json.dumps(getTextVectors(_keyword)[0], cls=NumpyEncoder)}
+#             return {'vectors': json.dumps(getTextVectors(_keyword)[0], cls=NumpyEncoder)}
+            return {'vectors': getTextVectors(_keyword)[0]}
         except Exception as e:
             return {'error': str(e)}
 api.add_resource(Vector, '/vectors')
