@@ -15,6 +15,7 @@
 * kibana 8.8.1
 * logstash 8.8.1
 * kafka
+* redis 
 * tensorflow 2.14
 * OpenCV4.5.0
 * MySql
@@ -34,7 +35,9 @@
 >kibana   
 >logstash
 >
-> > kafka
+> >kafka
+> 
+> >redis
 
 > application
 > > aqqle
