@@ -5,6 +5,9 @@ spring:
   application:
     name: HELLO_SPRING
   profiles:
+    redis:
+      host: localhost
+      port: 6379
     group:
       local: local
       dev: dev

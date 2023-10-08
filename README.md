@@ -51,7 +51,7 @@ web
 >
 
 
-> python
+> third_party
 > >tf-embeddings
 >>>api
 
@@ -124,13 +124,13 @@ docker compose -f kafka-full.yml up -d --build
         * [manage - Admin 에서 사용될 API (크롤링키워드관리)](https://ldh-6019.tistory.com/category/aqqle%20shopping/manage)
         * [producer - Kafka producer (카프카 데이터 전송)](https://ldh-6019.tistory.com/category/aqqle%20shopping/producer)
         * [consumer - Kafka consumer (카프카 데이터 소비)](https://ldh-6019.tistory.com/category/aqqle%20shopping/consumer)
-        * [web - aqqle shopping 웹사이트](https://ldh-6019.tistory.com/category/aqqle%20shopping/web)
+        * [web - aqqle 웹사이트](https://ldh-6019.tistory.com/category/aqqle%20shopping/web)
 
 
-1. python : tensorflow Text-embedding 모델을 사용하기 위한 API
-* python
-    * tf-embedding
-        * [app - Text embedding API](https://ldh-6019.tistory.com/185?category=1043090)
+1. third_party : tensorflow Text-embedding 모델을 사용하기 위한 API
+   * third_party
+     * tf-embedding
+       * [app - Text embedding API](https://ldh-6019.tistory.com/185?category=1043090)
 
 Usage
 ```

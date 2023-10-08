@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ElasticStatic {
 
-    SHOP("shop");
+    SHOP("shop"),
+    LOCATION("location");
 
     private final String alias;
 }

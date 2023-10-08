@@ -9,6 +9,10 @@ dependencies {
 
     implementation project(':common')
 
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
     implementation 'io.springfox:springfox-swagger2:2.5.0'
 
