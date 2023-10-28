@@ -115,8 +115,8 @@ docker compose -f kafka-full.yml up -d --build
 
 1. java : aqqle 프로젝트
 * java
-    * doo : Project root
-        * [api - 검색 API](https://ldh-6019.tistory.com/category/aqqle%20shopping/api)
+    * aqqle : Project root
+        * [api - 검색 API](https://father-lys.tistory.com/category/Java/API)
         * common - 공통파일
         * [crawler - 웹사이트의 정보를 크롤링]
           * [crawler - 쇼핑데이터](https://father-lys.tistory.com/22)
