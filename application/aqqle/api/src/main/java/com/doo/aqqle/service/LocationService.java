@@ -27,11 +27,9 @@ public class LocationService {
 
     private final ResponseService responseService;
     private final RestHighLevelClient client;
-//    private final String ALIAS = "goods";
 
     @Cacheable(value = CacheKey.LOCATION, key = "#countryCode", unless = "#result == null")
     public CommonResult getLocations(String countryCode) {
-
 
         try {
 
@@ -69,7 +67,7 @@ public class LocationService {
 
 
             SearchRequest searchRequest = new SearchRequest();
-            aggsRequest.indices(ElasticStatic.LOCATION.getAlias());
+            searchRequest.indices(ElasticStatic.LOCATION.getAlias());
 
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
