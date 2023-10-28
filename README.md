@@ -25,7 +25,7 @@
 ---
 
 ## - Architecture - [phase.1](https://father-lys.tistory.com/20)
-[![phase4](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTXgpg%2FbtssVXABDhv%2FG6idgvnaXTS5Y1XpocWWHK%2Fimg.png)](https://father-lys.tistory.com/20)
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTXgpg%2FbtssVXABDhv%2FG6idgvnaXTS5Y1XpocWWHK%2Fimg.png)](https://father-lys.tistory.com/20)
 
 ## - Project directory structure
 
@@ -143,9 +143,12 @@ $ conda activate aqqle
 #text embedding api 실행
 $ python app/api.py
  ``` 
-       
 ---
-##Preparation
+### API cache strategy
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJM2GU%2Fbtsyti71iJO%2FSoLJt6fdZPLm8JMVsPHzP1%2Fimg.png)](https://father-lys.tistory.com/46)
+
+---
+### Preparation
 * [docker 설치](https://ldh-6019.tistory.com/10)
 * [docker MySql설치](https://ldh-6019.tistory.com/11)
 * [anaconda 설치](https://ldh-6019.tistory.com/117)
