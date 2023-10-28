@@ -145,7 +145,7 @@ $ python app/api.py
  ``` 
 ---
 ### API cache strategy
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJM2GU%2Fbtsyti71iJO%2FSoLJt6fdZPLm8JMVsPHzP1%2Fimg.png)](https://father-lys.tistory.com/46)
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fzt9vK%2FbtszokCTWS8%2Fq33sM8muSV8CbsDB6E2rS1%2Fimg.png)](https://father-lys.tistory.com/54)
 
 ---
 ### Preparation
