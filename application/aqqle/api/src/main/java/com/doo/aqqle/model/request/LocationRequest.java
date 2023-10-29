@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationRequest extends CommonRequest{
+public class LocationRequest extends CommonRequest implements Request{
 
     @ApiParam(value = "거리 km", defaultValue = "5")
     private String distance;

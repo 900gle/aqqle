@@ -32,10 +32,6 @@ public class DistanceService {
     private final ResponseService responseService;
     private final RestHighLevelClient client;
 
-
-
-
-
     @Cacheable(value = CacheKey.DISTANCE, key = "T(com.doo.aqqle.utils.KeyGenerator).cacheKey('getDistance', #request.distance, #request.countryCode)")
     public CommonResult getDistance(LocationRequest request) {
 

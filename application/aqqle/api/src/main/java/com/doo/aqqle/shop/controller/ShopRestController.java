@@ -1,31 +1,32 @@
-package com.doo.aqqle.controller;
+package com.doo.aqqle.shop.controller;
 
 
 import com.doo.aqqle.model.CommonResult;
-import com.doo.aqqle.service.GoodsService;
+import com.doo.aqqle.model.request.LocationRequest;
+import com.doo.aqqle.model.request.ShopRequest;
+import com.doo.aqqle.service.ShopService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@Api(tags = "1. Goods Apis")
+@Api(tags = "1. Shop Apis")
 @RequestMapping("api/search")
 @RequiredArgsConstructor
 public class ShopRestController {
 
-    private final GoodsService goodsService;
+    private final ShopService service;
 
     @CrossOrigin("*")
     @ApiOperation(value = "search", notes = "검색")
     @GetMapping("shop")
     public CommonResult getDatas(
-            @ApiParam(value = "검색어") @RequestParam(value = "searchWord", defaultValue = "몽클레어", required = true) @Validated final String searchWord
+            @ModelAttribute ShopRequest request
+
     ) {
-        return goodsService.getProducts(searchWord);
+        return service.getProducts(request);
     }
 
 }

@@ -145,7 +145,7 @@ $ python app/api.py
  ``` 
 ---
 ### API cache strategy
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fzt9vK%2FbtszokCTWS8%2Fq33sM8muSV8CbsDB6E2rS1%2Fimg.png)](https://father-lys.tistory.com/54)
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtPUnZ%2FbtszlGfAoQk%2Fdz18kEBgpeAkTOOQiKHFS1%2Fimg.png)](https://father-lys.tistory.com/55)
 
 ---
 ### Preparation
@@ -153,3 +153,4 @@ $ python app/api.py
 * [docker MySql설치](https://ldh-6019.tistory.com/11)
 * [anaconda 설치](https://ldh-6019.tistory.com/117)
 * [anaconda tensorflow 설치](https://ldh-6019.tistory.com/118?category=1043090)
+* [docker redis 설치](https://father-lys.tistory.com/41)

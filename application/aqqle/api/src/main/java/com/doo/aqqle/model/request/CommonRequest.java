@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonRequest {
+public class CommonRequest implements Request{
+
     @ApiParam(value = "from", defaultValue = "0")
     private int from;
 

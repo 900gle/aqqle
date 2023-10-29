@@ -3,43 +3,38 @@ package com.doo.aqqle.service;
 
 import com.doo.aqqle.HostUrl;
 import com.doo.aqqle.component.TextEmbedding;
+import com.doo.aqqle.component.query.LocationSearchQuery;
 import com.doo.aqqle.component.query.ShopSearchQuery;
+import com.doo.aqqle.component.response.DataResponse;
 import com.doo.aqqle.dto.TextEmbeddingDTO;
-import com.doo.aqqle.enums.ElasticStatic;
 import com.doo.aqqle.model.CommonResult;
+import com.doo.aqqle.model.request.LocationRequest;
 import com.doo.aqqle.model.request.ShopRequest;
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
-import org.elasticsearch.index.query.functionscore.ScriptScoreFunctionBuilder;
 import org.elasticsearch.script.Script;
 import org.elasticsearch.script.ScriptType;
-import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 @Service
 @RequiredArgsConstructor
-public class GoodsService {
+public class ShopService {
 
     private final ResponseService responseService;
-    private final RestHighLevelClient client;
-    private final ShopSearchQuery shopSearchQuery;
+    private final ShopSearchQuery query;
+    private final LocationSearchQuery locaton;
+    private final DataResponse response;
 
     public CommonResult getProducts(ShopRequest request) {
 
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices(ElasticStatic.SHOP.getAlias());
         try {
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
             String[] includeFields = new String[]{};
             String[] excludeFields = new String[]{"feature_vector"};
             searchSourceBuilder.fetchSource(includeFields, excludeFields);
@@ -47,7 +42,6 @@ public class GoodsService {
             FunctionScoreQueryBuilder.FilterFunctionBuilder[] filterFunctionBuilders = null;
 
             Script script = new Script(ScriptType.INLINE, Script.DEFAULT_SCRIPT_LANG, "1", new HashMap<>());
-
             if ("Y".equals(request.getSimilarity())) {
                 Vector<Double> vectors = TextEmbedding.getVector(
                         TextEmbeddingDTO.builder()
@@ -59,37 +53,29 @@ public class GoodsService {
                 script = new Script(ScriptType.INLINE, Script.DEFAULT_SCRIPT_LANG, "cosineSimilarity(params.query_vector, 'feature_vector') + 1.0", map);
             }
 
-            filterFunctionBuilders = shopSearchQuery.getShopFunctionScoreQueryBuilder(script);
+            filterFunctionBuilders = query.getShopFunctionScoreQueryBuilder(script);
 
             FunctionScoreQueryBuilder functionScoreQueryBuilder = new FunctionScoreQueryBuilder(
-                    shopSearchQuery.getShopQueryBuilder(request.getSearchWord()),
+                    query.getShopQueryBuilder(request.getSearchWord()),
                     filterFunctionBuilders
             );
 
-            searchSourceBuilder.query(functionScoreQueryBuilder);
-            searchSourceBuilder.from(request.getFrom());
-            searchSourceBuilder.size(request.getSize());
+            LocationRequest locationRequest = new LocationRequest();
+            locationRequest.setDistance("5");
+            locationRequest.setCountryCode("KR");
+            locationRequest.setSize(10);
 
-            searchRequest.source(searchSourceBuilder);
-            System.out.println(searchSourceBuilder);
-            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("LOCATION", response.dataResponse(locaton.getDistanceBuilder(locationRequest), locationRequest));
+            resultMap.put("ITEM", response.shopDataResponse(functionScoreQueryBuilder, request));
 
-            List<Map<String, Object>> returnValue = new ArrayList<>();
-            SearchHit[] results = searchResponse.getHits().getHits();
-
-            Arrays.stream(results).forEach(hit -> {
-                Map<String, Object> result = hit.getSourceAsMap();
-                result.put("score", hit.getScore());
-                returnValue.add(result);
-            });
-
-            return responseService.getListResult(returnValue);
+            return responseService.getSingleResult(resultMap);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new CommonResult();
+        return responseService.getFailResult();
     }
 
 }

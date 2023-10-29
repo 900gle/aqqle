@@ -1,4 +1,4 @@
-package com.doo.aqqle.controller;
+package com.doo.aqqle.location.controller;
 
 
 import com.doo.aqqle.model.CommonResult;
