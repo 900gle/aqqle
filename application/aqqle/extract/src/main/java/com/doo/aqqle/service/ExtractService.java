@@ -3,8 +3,11 @@ package com.doo.aqqle.service;
 import com.doo.aqqle.annotation.IndexerLog;
 import com.doo.aqqle.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,8 +26,10 @@ public class ExtractService {
     private List<CompletableFuture<Integer>> completableFutures = new ArrayList<>();
 
     @IndexerLog
-    public void index(String type) {
+    public void index(String type) throws IOException {
 
+        File file = new File("/data/static/");
+        FileUtils.cleanDirectory(file);
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         String directory = "/data/static/"+ LocalDateTime.now().format(dateTimeFormatter).toString();
@@ -50,8 +55,6 @@ public class ExtractService {
                 e.printStackTrace();
             }
         }
-
-
     }
 
 }

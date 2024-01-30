@@ -12,7 +12,7 @@ import java.util.Vector;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "goods_text")
+@Table(name = "aqqle_goods")
 public class Goods {
 
     @Id

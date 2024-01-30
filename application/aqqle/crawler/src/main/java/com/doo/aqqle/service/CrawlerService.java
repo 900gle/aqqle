@@ -75,20 +75,20 @@ public class CrawlerService {
                                     }
 
                                     productsRepository.save(Products.builder()
-                                            .keyword(crawlerDto.getKeyword())
-                                            .name(title.text())
-                                            .price(price.text().equals("") ? 0 : Integer.parseInt(price.text().replace(",", "")))
-                                            .brand(brand.text())
-                                            .category(category.text())
-                                            .category1(categoryLists.get(0))
-                                            .category2(categoryLists.get(1))
-                                            .category3(categoryLists.get(2))
-                                            .category4(categoryLists.get(3))
-                                            .category5(categoryLists.get(4))
-                                            .image(image.attr("src"))
+                                                    .keyword(crawlerDto.getKeyword())
+                                                    .name(title.text())
+                                                    .price(price.text().equals("") ? 0 : Integer.parseInt(price.text().replace(",", "")))
+                                                    .brand(brand.text())
+                                                    .category(category.text())
+                                                    .category1(categoryLists.get(0))
+                                                    .category2(categoryLists.get(1))
+                                                    .category3(categoryLists.get(2))
+                                                    .category4(categoryLists.get(3))
+                                                    .category5(categoryLists.get(4))
+                                                    .image(image.attr("src"))
 //                                            .imageVector(ImageToVectorOpenCV.getVector(image.attr("src")).toString())
-                                            .type("C")
-                                            .build()
+                                                    .type("C")
+                                                    .build()
                                     );
                                 } catch (IOException e) {
                                     e.printStackTrace();

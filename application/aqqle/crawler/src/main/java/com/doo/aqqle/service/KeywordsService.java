@@ -19,12 +19,12 @@ public class KeywordsService {
     @Transactional
     @Timer
     public List<Keywords> getData() {
-       return keywordsRepository.findAllByUseYn("Y");
+        return keywordsRepository.findAllByUseYn("Y");
     }
 
     @Transactional
     @Timer
-    public void putData(Keywords k){
+    public void putData(Keywords k) {
         keywordsRepository.save(Keywords.builder().keyword(k.getKeyword()).use("N").build());
     }
 

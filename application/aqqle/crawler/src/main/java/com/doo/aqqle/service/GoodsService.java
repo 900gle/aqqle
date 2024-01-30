@@ -2,17 +2,16 @@ package com.doo.aqqle.service;
 
 
 import com.doo.aqqle.HostUrl;
-import com.doo.aqqle.component.Site;
-import com.doo.aqqle.component.TextEmbedding;
-import com.doo.aqqle.domain.AqqleGoods;
-import com.doo.aqqle.domain.AqqleGoodsRepository;
-import com.doo.aqqle.dto.TextEmbeddingDTO;
-import com.doo.aqqle.factory.NaverFactory;
-import com.doo.aqqle.factory.SiteFactory;
 import com.doo.aqqle.annotation.Timer;
+import com.doo.aqqle.component.ElementComponent;
+import com.doo.aqqle.component.TextEmbedding;
 import com.doo.aqqle.domain.Keywords;
+import com.doo.aqqle.dto.TextEmbeddingDTO;
+import com.doo.aqqle.element.Site;
+import com.doo.aqqle.repository.GoodsNaver;
+import com.doo.aqqle.repository.GoodsNaverRepository;
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -25,11 +24,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class GoodsService {
 
-    private final AqqleGoodsRepository goodsRepository;
+    private final GoodsNaverRepository goodsRepository;
     private final KeywordsService keywordsService;
 
     private final int CRAWLING_LIMIT = 100;
@@ -37,13 +37,16 @@ public class GoodsService {
     @Timer
     public void getData(String type) {
 
-        Site site = new SiteFactory().getSite(new NaverFactory());
+        Site site = ElementComponent.getElementSite(type);
+
         List<Keywords> keywords = keywordsService.getData();
+
         keywords.stream().forEach(obj -> {
+
                     try {
                         int i = 0;
                         while (true) {
-                            Thread.sleep(2000); //1초 대기
+                            Thread.sleep(3000); //1초 대기
                             String listUrl = site.getUrl(obj.getKeyword(), i);
                             System.out.println(listUrl);
                             Document listDocument = Jsoup.connect(listUrl)
@@ -51,6 +54,7 @@ public class GoodsService {
                                     .get();
 
                             Elements list = listDocument.select("div.adProduct_inner__W_nuz");
+                            log.info("List Size : {}", list.size());
                             list.stream().forEach(element -> {
                                 try {
                                     Elements title = element.select("div.adProduct_title__amInq>a");
@@ -64,7 +68,7 @@ public class GoodsService {
 
                                     Thread.sleep(1000);
 
-                                    goodsRepository.save(AqqleGoods.builder()
+                                    goodsRepository.save(GoodsNaver.builder()
                                             .keyword(obj.getKeyword())
                                             .name(title.text())
                                             .price(price.text().equals("") ? 0 : Integer.parseInt(price.text().replaceAll("[^0-9]", "")))
@@ -93,6 +97,11 @@ public class GoodsService {
                             if (i > CRAWLING_LIMIT) {
                                 break;
                             }
+
+                            if (list.size() < 1) {
+                                i = 1;
+                            }
+
                             i++;
                         }
                     } catch (IOException e) {
@@ -100,7 +109,6 @@ public class GoodsService {
                     } catch (InterruptedException i) {
                         i.printStackTrace();
                     }
-                    keywordsService.putData(obj);
                 }
         );
     }

@@ -9,6 +9,7 @@ import org.springframework.data.redis.cache.CacheKeyPrefix;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -21,6 +22,14 @@ import java.util.Map;
 @Configuration
 public class RedisConfig {
 
+//    @Bean
+//    public ConfigureRedisAction configureRedisAction() {
+//        return ConfigureRedisAction.NO_OP;
+//    }
+
+
+
+
     @Bean(name = "cacheManager")
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
 
@@ -28,6 +37,7 @@ public class RedisConfig {
                 .disableCachingNullValues()
                 .entryTtl(Duration.ofSeconds(CacheKey.DEFAULT_EXPIRE_SEC))
                 .computePrefixWith(CacheKeyPrefix.simple())
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()));
 
         Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();

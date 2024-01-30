@@ -49,7 +49,7 @@ public class IndexerService {
     @IndexerLog
     public void index(String type) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
         String indexName = ElasticStatic.SHOP.getAlias() + "-" + LocalDateTime.now().format(dateTimeFormatter).toString();
 
         try {
@@ -69,6 +69,8 @@ public class IndexerService {
             File file = new File(path);
 
             String dir = Arrays.stream(file.list()).sorted().findFirst().get();
+
+            System.out.println(dir);
 
             File files = new File(path + dir);
             List<String> fileList = Arrays.stream(files.list()).collect(Collectors.toList());

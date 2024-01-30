@@ -2,6 +2,7 @@ package com.doo.aqqle.runner;
 
 
 import com.doo.aqqle.service.ExtractService;
+import com.doo.aqqle.service.MergeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,11 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
 
     private final ExtractService extractService;
+    private final MergeService mergeService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
     Exclusive exclusive;
-    @Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D ]")
+    @Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D | M ]")
     private String type;
 
     @Override
@@ -32,6 +34,11 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
             case "D":
                 extractService.index(type);
                 break;
+            case "M":
+                mergeService.index();
+                break;
+
+
         }
         return ExitCode.OK;
     }

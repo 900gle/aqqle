@@ -34,7 +34,7 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
             case "C":
                 indexerService.index("ddd");
                 break;
-            case "D":
+            case "S":
                 indexerService.index(type);
                 break;
             case "T":

@@ -9,7 +9,6 @@ public class ExtractApplication {
     public static void main(String[] args) {
         SpringApplication.run(ExtractApplication.class, args);
         System.exit(1);
-
     }
 
 }
