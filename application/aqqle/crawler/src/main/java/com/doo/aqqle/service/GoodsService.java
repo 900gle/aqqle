@@ -82,7 +82,7 @@ public class GoodsService {
                                             .featureVector(TextEmbedding.getVector(TextEmbeddingDTO.builder().tensorApiUrl(HostUrl.EMBEDDING.getUrl()).keyword(title.text()).build()).toString())
                                             .popular(1)
                                             .weight(0.1f)
-                                            .type("C")
+                                            .type("N")
                                             .createdTime(LocalDateTime.now())
                                             .updatedTime(LocalDateTime.now())
                                             .build()
