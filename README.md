@@ -121,8 +121,8 @@ docker compose -f kafka-full.yml up -d --build
         * [crawler - 웹사이트의 정보를 크롤링]
           * [crawler - 쇼핑데이터](https://father-lys.tistory.com/22)
           * [crawler - 뉴스데이터](https://father-lys.tistory.com/22)
-        * [extract - 크롤링 후 데이터 파일 생성](https://ldh-6019.tistory.com/category/aqqle%20shopping/extract)
-        * [indexer - DB의 내용을 ES에 색인](https://ldh-6019.tistory.com/category/aqqle%20shopping/indexer)
+        * [extract - 크롤링 후 데이터 파일 생성](https://father-lys.tistory.com/category/Aqqle/EXTRACT)
+        * [indexer - DB의 내용을 ES에 색인](https://father-lys.tistory.com/category/Aqqle/INDEXER)
         * [libs - OpenCV lib 파일](https://ldh-6019.tistory.com/category/OpneCV)
         * [manage - Admin 에서 사용될 API (크롤링키워드관리)](https://ldh-6019.tistory.com/category/aqqle%20shopping/manage)
         * [producer - Kafka producer (카프카 데이터 전송)](https://ldh-6019.tistory.com/category/aqqle%20shopping/producer)
