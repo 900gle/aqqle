@@ -89,7 +89,7 @@ payload-score-0.1.zip - payload score plugin
 Usage
  ```
 # docker-compose.yml 파일이 위한 경로로 이동 
-$ cd ~/aqqle/docker/elastic-stack    
+$ cd ~/aqqle/docker/elastic    
 
 # elasticsearch, kibana 빌드/실행   
 $ docker compose up -d --build
