@@ -5,7 +5,8 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faqqle%2Faqqle&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ## What is Aqqle?
 텍스트기반의 포털사이트 개인프로젝트 
-[아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현
+[아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현  
+(개발잡부 900gle의 es7 버전에서 es8 로 신규개발)  
 
 #### 개발환경
 * macOS
@@ -30,45 +31,49 @@
 ## - Project directory structure
 
 > docker
-> > elastic-stack
->>> elasticsearch  
->kibana   
->logstash
+> > elastic
+>> -  elasticsearch
+>> - kibana
+>> - logstash
 >
 > >kafka
 > 
 > >redis
+> 
+> >mysql  
 
 > application
 > > aqqle
-> > >api  
-common  
-consumer  
-crawler  
-indexer  
-extract  
-libs  
-manage   
-producer  
-web
+> > - api ( 검색용 API )
+> > - common ( 공통파일 )
+> > - consumer ( kafka consumer )
+> > - crawler ( 데이터 크롤러 )
+> > - indexer ( 색인배치 )
+> > - extract ( DB to json file 배치 )
+> > - libs ( OpenCV library )
+> > - manage ( Admin API )
+> > - producer ( kafka producer )
+> > - web ( Aqqle web site )
 >
 
 
 > third_party
 > >tf-embeddings
->>>api
+>>>api ( Tensorflow text embedding API )
 
 
 ## - Project discription
 
 1. docker : Elastic stack 관련 DockerFile 및 플러그인 파일
 * docker
-    * elastic-stack
+    * elastic
         * [elasticsearch](https://ldh-6019.tistory.com/category/ElasticStack/Elasticsearch)
         * extensions
         * [kibana](https://ldh-6019.tistory.com/category/ElasticStack/Kibana)
         * logstash
     * [kafka](https://ldh-6019.tistory.com/category/Kafka)
+    * [Redis](https://ldh-6019.tistory.com/category/Kafka)
+    * [MySql](https://ldh-6019.tistory.com/category/Kafka)
 
 #### Elasticsearch pluin
 >analysis-nori - nori 한글형태소분석 플러그인   
@@ -124,7 +129,7 @@ docker compose -f kafka-full.yml up -d --build
         * [extract - 크롤링 후 데이터 파일 생성](https://father-lys.tistory.com/category/Aqqle/EXTRACT)
         * [indexer - DB의 내용을 ES에 색인](https://father-lys.tistory.com/category/Aqqle/INDEXER)
         * [libs - OpenCV lib 파일](https://ldh-6019.tistory.com/category/OpneCV)
-        * [manage - Admin 에서 사용될 API (크롤링키워드관리)](https://ldh-6019.tistory.com/category/aqqle%20shopping/manage)
+        * [manage - Admin 에서 사용될 API (크롤링키워드관리)](https://father-lys.tistory.com/category/Aqqle/MANAGE)
         * [producer - Kafka producer (카프카 데이터 전송)](https://ldh-6019.tistory.com/category/aqqle%20shopping/producer)
         * [consumer - Kafka consumer (카프카 데이터 소비)](https://ldh-6019.tistory.com/category/aqqle%20shopping/consumer)
         * [web - aqqle 웹사이트](https://ldh-6019.tistory.com/category/aqqle%20shopping/web)
