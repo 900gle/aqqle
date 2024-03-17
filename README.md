@@ -26,7 +26,7 @@
 ---
 
 ## - Architecture - [phase.1](https://father-lys.tistory.com/20)
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbONB0G%2FbtszkkYrQLY%2FVKaDjZC7qsuJjTixZuPxT0%2Fimg.png)](https://father-lys.tistory.com/53)
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F2jv52%2FbtsFRCYBS54%2FVihtdDGxZt889IlKghaUo0%2Fimg.png)](https://father-lys.tistory.com/53)
 
 ## - Project directory structure
 

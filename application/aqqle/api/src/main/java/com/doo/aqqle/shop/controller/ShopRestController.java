@@ -24,7 +24,6 @@ public class ShopRestController {
     @GetMapping("shop")
     public CommonResult getDatas(
             @ModelAttribute ShopRequest request
-
     ) {
         return service.getProducts(request);
     }
