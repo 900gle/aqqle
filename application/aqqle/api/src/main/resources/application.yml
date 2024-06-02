@@ -12,7 +12,9 @@ spring:
       local: local
       dev: dev
       test: test
-
+  massages:
+    basename: i18n/exception
+    encoding: UTF-8
   batch:
     job:
       names: ${job.name:NONE}

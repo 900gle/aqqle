@@ -2,6 +2,7 @@ package com.doo.aqqle.runner;
 
 
 import com.doo.aqqle.service.ExtractService;
+import com.doo.aqqle.service.InvestmentService;
 import com.doo.aqqle.service.MergeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +21,12 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
 
     private final ExtractService extractService;
+    private final InvestmentService investmentService;
     private final MergeService mergeService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
     Exclusive exclusive;
-    @Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D | M ]")
+    @Parameters(index = "0", paramLabel = "indexer type", description = "indexer type [ S | D | M | I]")
     private String type;
 
     @Override
@@ -33,6 +35,9 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
         switch (type) {
             case "D":
                 extractService.index(type);
+                break;
+            case "I":
+                investmentService.index(type);
                 break;
             case "M":
                 mergeService.index();

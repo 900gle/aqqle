@@ -2,7 +2,6 @@ package com.doo.aqqle.service;
 
 
 import com.doo.aqqle.annotation.Timer;
-
 import com.doo.aqqle.domain.Keywords;
 import com.doo.aqqle.domain.KeywordsRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,22 +37,28 @@ public class KeywordsService {
     @Timer
     @Transactional
     public List<Keywords> getKeywordsByUse(String use) {
-        return keywordsRepository.findAllByUseYn(use);
+        return keywordsRepository.findByUseYn(use);
     }
 
     @Timer
     @Transactional
     public List<Keywords> getKeywordsByKeyword(String keyword) {
-        return keywordsRepository.findAllByKeyword(keyword);
+        return keywordsRepository.findByKeyword(keyword);
     }
 
     @Timer
     @Transactional
     public boolean put(Long id, String useYn) {
-        Keywords keywords = keywordsRepository.findAllById(id);
-        keywords.setUseYn(useYn);
-        keywordsRepository.save(keywords);
-        return true;
+        Keywords keywords = keywordsRepository.findById(id).orElse(null);
+        if (keywords != null) {
+            keywords.setUseYn(useYn);
+            if (keywordsRepository.save(keywords) != null){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
 }

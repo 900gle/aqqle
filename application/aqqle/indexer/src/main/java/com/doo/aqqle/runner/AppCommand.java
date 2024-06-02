@@ -2,6 +2,7 @@ package com.doo.aqqle.runner;
 
 
 import com.doo.aqqle.service.IndexerService;
+import com.doo.aqqle.service.InvestmentService;
 import com.doo.aqqle.service.TestIndexService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
 
     private final IndexerService indexerService;
+    private final InvestmentService investmentService;
     private final TestIndexService testIndexService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
@@ -36,6 +38,9 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
                 break;
             case "S":
                 indexerService.index(type);
+                break;
+            case "I":
+                investmentService.index(type);
                 break;
             case "T":
                 testIndexService.index();

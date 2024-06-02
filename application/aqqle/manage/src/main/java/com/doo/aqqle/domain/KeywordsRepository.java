@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface KeywordsRepository extends JpaRepository<Keywords, Long> {
 
-    List<Keywords> findAllByUseYn(String use);
-    List<Keywords> findAllByKeyword(String Keyword);
-    Keywords findAllById(Long id);
+    List<Keywords> findByUseYn(String use);
+    List<Keywords> findByKeyword(String Keyword);
+    List<Keywords> findAll();
+
 }

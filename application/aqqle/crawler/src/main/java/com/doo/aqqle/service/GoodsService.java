@@ -39,11 +39,15 @@ public class GoodsService {
 
         Site site = ElementComponent.getElementSite(type);
 
+
+
         List<Keywords> keywords = keywordsService.getData();
 
         keywords.stream().forEach(obj -> {
 
                     try {
+                        keywordsService.putData(obj.getId());
+
                         int i = 0;
                         while (true) {
                             Thread.sleep(3000); //1초 대기
