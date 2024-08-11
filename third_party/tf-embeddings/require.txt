@@ -11,3 +11,11 @@ Api
 Resource
 matplotlib
 pandas
+transformers
+sentence-transformers
+torch
+torchvision
+torchaudio
+diffusers
+transformers
+accelerate

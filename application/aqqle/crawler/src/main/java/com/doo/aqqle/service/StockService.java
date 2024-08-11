@@ -22,7 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +47,12 @@ public class StockService {
 
         stockList.stream().forEach(x-> {
 
-            String listUrl = "https://query1.finance.yahoo.com/v7/finance/download/"+x.getCompanyCode()+"?period1=1585621480&period2=1717243880&interval=1d&events=history&includeAdjustedClose=true";
+            LocalDate localDate = LocalDate.parse(x.getStartDate());
 
+            long period1 = localDate.atStartOfDay(ZoneId.of("UTC")).toEpochSecond();
+            long period2 = Instant.now().getEpochSecond();
+
+            String listUrl = "https://query1.finance.yahoo.com/v7/finance/download/"+x.getCompanyCode()+"?period1="+period1+"&period2="+period2+"&interval=1d&events=history&includeAdjustedClose=true";
 
             try {
                 FileDownload.downloadFile(listUrl, "/data/stock/");
@@ -53,25 +60,7 @@ public class StockService {
             } catch (IOException e) {
                 System.out.println("파일 다운로드 중 오류 발생: " + e.getMessage());
             }
-
         });
-
-
-
-
-
-
-
-//        https://query1.finance.yahoo.com/v7/finance/download/VFS?period1=1685621480&period2=1717243880&interval=1d&events=history&includeAdjustedClose=true
-//        https://query1.finance.yahoo.com/v7/finance/download/NVDA?period1=917015400&period2=1717244542&interval=1d&events=history&includeAdjustedClose=true
-//        https://query1.finance.yahoo.com/v7/finance/download/TSLA?period1=1277818200&period2=1717244467&interval=1d&events=history&includeAdjustedClose=true
-
-
-
-
-
-
-
     }
 
 
