@@ -138,7 +138,7 @@ docker compose -f kafka-full.yml up -d --build
 1. third_party : tensorflow Text-embedding 모델을 사용하기 위한 API
    * third_party
      * tf-embedding
-       * [app - Text embedding API](https://ldh-6019.tistory.com/185?category=1043090)
+       * [app - Text embedding API](https://father-lys.tistory.com/category/Python/Text%20embeddings)
 
 Usage
 ```
@@ -156,6 +156,6 @@ $ python app/api.py
 ### Preparation
 * [docker 설치](https://ldh-6019.tistory.com/10)
 * [docker MySql설치](https://ldh-6019.tistory.com/11)
-* [anaconda 설치](https://ldh-6019.tistory.com/117)
+* [anaconda 설치](https://father-lys.tistory.com/136)
 * [anaconda tensorflow 설치](https://ldh-6019.tistory.com/118?category=1043090)
 * [docker redis 설치](https://father-lys.tistory.com/41)

@@ -33,13 +33,9 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     public Integer call() throws Exception {
 
         switch (type) {
-
             case "S":
                 userService.postFinish(Users.builder().name("이두현").build());
-
                 break;
-
-
         }
         return ExitCode.OK;
     }
