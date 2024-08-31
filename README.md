@@ -6,7 +6,7 @@
 ## What is Aqqle?
 텍스트기반의 포털사이트 개인프로젝트 
 [아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현  
-(개발잡부 900gle의 es7 버전에서 es8 로 신규개발)  
+([개발잡부 900gle](https://ldh-6019.tistory.com/)의 es7 버전에서 es8 로 신규개발)  
 
 #### 개발환경
 * macOS
