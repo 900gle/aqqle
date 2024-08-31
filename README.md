@@ -73,7 +73,7 @@
         * logstash
     * [kafka](https://ldh-6019.tistory.com/category/Kafka)
     * [Redis](https://ldh-6019.tistory.com/category/Kafka)
-    * [MySql](https://ldh-6019.tistory.com/category/Kafka)
+    * [MySql](https://father-lys.tistory.com/70)
 
 #### Elasticsearch pluin
 >analysis-nori - nori 한글형태소분석 플러그인   
@@ -160,7 +160,7 @@ $ python app/api.py
 ---
 ### Preparation
 * [docker 설치](https://ldh-6019.tistory.com/10)
-* [docker MySql설치](https://ldh-6019.tistory.com/11)
+* [docker MySql설치](https://father-lys.tistory.com/70)
 * [anaconda 설치](https://father-lys.tistory.com/136)
 * [anaconda tensorflow 설치](https://ldh-6019.tistory.com/118?category=1043090)
 * [docker redis 설치](https://father-lys.tistory.com/41)
