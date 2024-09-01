@@ -20,4 +20,9 @@ public class Naver extends Site<String, Integer> {
                 .queryParam("viewType", "list")
                 .build().toString();
     }
+
+    @Override
+    public String getListCssSelector() {
+        return null;
+    }
 }

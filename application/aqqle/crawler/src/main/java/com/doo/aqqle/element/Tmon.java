@@ -14,4 +14,9 @@ public class Tmon extends Site<String, Integer> {
                 .queryParam("thr", "hs")
                 .build().toString();
     }
+
+    @Override
+    public String getListCssSelector() {
+        return null;
+    }
 }
