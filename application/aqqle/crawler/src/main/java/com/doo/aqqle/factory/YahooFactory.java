@@ -8,4 +8,6 @@ public class YahooFactory implements SiteFactoryInterface {
     public Site getSite() {
         return new Yahoo();
     }
+
+
 }

@@ -34,7 +34,7 @@ public class YahooService extends AqqleService implements AqqleCrawler {
                     .timeout(5000)
                     .get();
 
-            Elements tableTr = listDocument.select("table.markets-table>tbody>tr");
+            Elements tableTr = listDocument.select(site.getListCssSelector());
 
             List<Tuple2<String, String>> tableTrs = tableTr.stream()
                     .map(x -> Tuple.of(
