@@ -31,17 +31,12 @@ public class LocationRestController {
         return locationService.getLocations(countryCode);
     }
 
-
     @CrossOrigin("*")
     @ApiOperation(value = "search", notes = "검색")
     @GetMapping("distance")
     public CommonResult getDistance(
             @ModelAttribute LocationRequest request
     ) {
-
         return distanceService.getDistance(request);
     }
-
-
-
 }

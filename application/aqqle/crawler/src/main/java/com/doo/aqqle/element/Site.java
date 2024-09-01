@@ -1,5 +1,6 @@
 package com.doo.aqqle.element;
 
-public abstract class Site {
-    public abstract String getUrl(String k, int i);
+public abstract class Site<T, U> {
+    public abstract String getUrl(T k, U i);
+
 }

@@ -4,7 +4,7 @@ import com.doo.aqqle.element.Site;
 
 public class SiteFactory {
 
-    public Site getSite(SiteFactoryInterface siteFactoryInterface) {
+    public static Site getSite(SiteFactoryInterface siteFactoryInterface) {
         return siteFactoryInterface.getSite();
     }
 }

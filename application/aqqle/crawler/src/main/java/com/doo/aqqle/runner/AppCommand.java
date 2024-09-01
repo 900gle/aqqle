@@ -1,9 +1,6 @@
 package com.doo.aqqle.runner;
 
-import com.doo.aqqle.service.CrawlerSeleniumService;
-import com.doo.aqqle.service.GoodsService;
-import com.doo.aqqle.service.StockService;
-import com.doo.aqqle.service.TmonService;
+import com.doo.aqqle.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine.*;
@@ -21,6 +18,7 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     private final GoodsService goodsService;
     private final TmonService tmonService;
     private final StockService stockService;
+    private final YahooService yahooService;
     private final CrawlerSeleniumService crawlerSeleniumService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
@@ -43,6 +41,10 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
                 break;
             case "S":
                 stockService.getData(type);
+//                tmonService.getData(type);
+                break;
+            case "Y":
+                yahooService.execute();
 //                tmonService.getData(type);
                 break;
             case "I":
