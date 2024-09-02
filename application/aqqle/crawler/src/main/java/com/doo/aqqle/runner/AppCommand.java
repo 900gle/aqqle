@@ -21,6 +21,7 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     private final YahooService yahooService;
     private final CrawlerSeleniumService crawlerSeleniumService;
 
+
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
     Exclusive exclusive;
     @Parameters(index = "0", paramLabel = "crawler type", description = "value:[ I | T ]")
@@ -37,15 +38,12 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
         switch (type) {
             case "T":
                 goodsService.getData(type);
-//                tmonService.getData(type);
                 break;
             case "S":
                 stockService.getData(type);
-//                tmonService.getData(type);
                 break;
             case "Y":
                 yahooService.execute();
-//                tmonService.getData(type);
                 break;
             case "I":
                 crawlerSeleniumService.getData(type);

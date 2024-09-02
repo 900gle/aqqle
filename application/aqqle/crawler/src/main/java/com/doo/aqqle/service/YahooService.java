@@ -11,6 +11,7 @@ import io.vavr.Tuple2;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Qualifier("YahooService")
 public class YahooService extends AqqleService implements AqqleCrawler {
 
     public YahooService(StockRepository stockRepository) {
@@ -56,7 +58,7 @@ public class YahooService extends AqqleService implements AqqleCrawler {
                             .startDate(LocalDateTime.now().toString())
                             .endDate(LocalDateTime.now().toString())
                             .type("BUY")
-                            .use("N")
+                            .use("Y")
                             .build());
                     System.out.println("Symbol: " + tuple._1);
                     System.out.println("Long: " + tuple._2);
