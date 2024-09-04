@@ -19,8 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@Qualifier("YahooService")
+@Service("YahooService")
 public class YahooService extends AqqleService implements AqqleCrawler {
 
     public YahooService(StockRepository stockRepository) {

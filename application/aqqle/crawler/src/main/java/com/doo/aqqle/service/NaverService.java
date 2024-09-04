@@ -3,15 +3,14 @@ package com.doo.aqqle.service;
 
 import com.doo.aqqle.HostUrl;
 import com.doo.aqqle.annotation.Timer;
-import com.doo.aqqle.element.Site;
 import com.doo.aqqle.component.TextEmbedding;
 import com.doo.aqqle.domain.AqqleGoods;
 import com.doo.aqqle.domain.AqqleGoodsRepository;
 import com.doo.aqqle.domain.Keywords;
 import com.doo.aqqle.dto.TextEmbeddingDTO;
+import com.doo.aqqle.element.Site;
 import com.doo.aqqle.factory.NaverFactory;
 import com.doo.aqqle.factory.SiteFactory;
-import com.doo.aqqle.factory.TmonFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -27,9 +26,9 @@ import java.util.stream.Collectors;
 
 
 @Slf4j
-@Service("TmonService")
+@Service("NaverService")
 @RequiredArgsConstructor
-public class TmonService implements AqqleCrawler{
+public class NaverService implements AqqleCrawler{
 
     private final AqqleGoodsRepository goodsRepository;
     private final KeywordsService keywordsService;
@@ -41,7 +40,7 @@ public class TmonService implements AqqleCrawler{
     @Override
     public void execute() {
 
-        Site site = SiteFactory.getSite(new TmonFactory());
+        Site site = SiteFactory.getSite(new NaverFactory());
         List<Keywords> keywords = keywordsService.getData();
 
         keywords.stream().forEach(obj -> {
