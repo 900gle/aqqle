@@ -3,8 +3,8 @@ package com.doo.aqqle.location.controller;
 
 import com.doo.aqqle.model.CommonResult;
 import com.doo.aqqle.model.request.LocationRequest;
-import com.doo.aqqle.service.DistanceService;
-import com.doo.aqqle.service.LocationService;
+import com.doo.aqqle.portal.service.DistanceService;
+import com.doo.aqqle.portal.service.LocationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

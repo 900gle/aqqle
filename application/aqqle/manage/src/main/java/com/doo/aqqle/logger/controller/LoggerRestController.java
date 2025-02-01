@@ -1,7 +1,6 @@
 package com.doo.aqqle.logger.controller;
 
 
-import com.doo.aqqle.model.CommonResult;
 import com.doo.aqqle.service.DictionarysService;
 import com.doo.aqqle.service.ResponseService;
 import io.swagger.annotations.Api;
@@ -17,7 +16,7 @@ import java.util.List;
 @Api(tags = "1. Dictionarys Apis")
 @RequestMapping("manage")
 @RequiredArgsConstructor
-public class DictionaryRestController {
+public class LoggerRestController {
 
     private final DictionarysService dictionarysService;
     private final ResponseService responseService;

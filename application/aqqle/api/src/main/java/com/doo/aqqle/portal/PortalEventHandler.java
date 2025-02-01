@@ -2,8 +2,6 @@ package com.doo.aqqle.portal;
 
 import com.doo.aqqle.model.request.LocationRequest;
 import com.doo.aqqle.model.request.ShopRequest;
-import com.doo.aqqle.service.LocationService;
-import com.doo.aqqle.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

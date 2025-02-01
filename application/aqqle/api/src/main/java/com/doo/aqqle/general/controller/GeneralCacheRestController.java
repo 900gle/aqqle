@@ -3,9 +3,7 @@ package com.doo.aqqle.general.controller;
 
 import com.doo.aqqle.model.CommonResult;
 import com.doo.aqqle.model.request.LikeRequest;
-import com.doo.aqqle.model.request.ShopRequest;
-import com.doo.aqqle.service.GeneralCacheService;
-import com.doo.aqqle.service.ShopService;
+import com.doo.aqqle.portal.service.GeneralCacheService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

@@ -18,6 +18,7 @@ public class Yahoo extends Site<Integer, Integer> {
     public String getListCssSelector(){
         return LIST_CSS;
     }
+
 }
 
 

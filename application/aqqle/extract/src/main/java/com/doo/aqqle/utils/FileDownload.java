@@ -11,21 +11,6 @@ import java.nio.file.StandardCopyOption;
 
 public class FileDownload {
 
-
-//    public static void main(String[] args) {
-//        String fileURL = "https://example.com/path/to/file.txt"; // 다운로드할 파일의 URL
-//        String saveDir = "/path/to/save/directory"; // 파일을 저장할 디렉토리
-//
-//        try {
-//            downloadFile(fileURL, saveDir);
-//            System.out.println("파일 다운로드 완료.");
-//        } catch (IOException e) {
-//            System.out.println("파일 다운로드 중 오류 발생: " + e.getMessage());
-//        }
-//    }
-
-
-
     public static void downloadFile(String fileURL, String saveDir) throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();

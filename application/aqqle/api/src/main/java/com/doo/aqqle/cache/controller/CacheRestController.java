@@ -2,7 +2,7 @@ package com.doo.aqqle.cache.controller;
 
 
 import com.doo.aqqle.model.CommonResult;
-import com.doo.aqqle.service.CacheService;
+import com.doo.aqqle.portal.service.CacheService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

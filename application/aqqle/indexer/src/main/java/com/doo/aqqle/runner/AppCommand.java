@@ -4,6 +4,7 @@ package com.doo.aqqle.runner;
 import com.doo.aqqle.service.IndexerService;
 import com.doo.aqqle.service.InvestmentService;
 import com.doo.aqqle.service.TestIndexService;
+import com.doo.aqqle.service.YahooDataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
     private final IndexerService indexerService;
     private final InvestmentService investmentService;
     private final TestIndexService testIndexService;
+    private final YahooDataService yahooDataService;
 
     @ArgGroup(exclusive = true, multiplicity = "1", validate = false)
     Exclusive exclusive;
@@ -42,9 +44,13 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
             case "I":
                 investmentService.index(type);
                 break;
+            case "Y":
+                yahooDataService.index("yahoo");
+                break;
             case "T":
                 testIndexService.index();
                 break;
+
 
         }
         return ExitCode.OK;

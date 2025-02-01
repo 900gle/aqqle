@@ -40,9 +40,13 @@ public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
             case "Y":
                 services.get("YahooService").execute();
                 break;
+            case "YD":
+                services.get("YahooDataService").execute();
+                break;
             case "N":
                 services.get("NaverService").execute();
                 break;
+
             default:
         }
         return ExitCode.OK;

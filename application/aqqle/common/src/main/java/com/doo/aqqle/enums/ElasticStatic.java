@@ -9,6 +9,7 @@ public enum ElasticStatic {
 
     SHOP("shop"),
     INVESTMENT("investment"),
+    YAHOO("yahoo"),
     LOCATION("location");
 
     private final String alias;

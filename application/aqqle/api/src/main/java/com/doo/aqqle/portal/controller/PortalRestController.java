@@ -3,12 +3,11 @@ package com.doo.aqqle.portal.controller;
 
 import com.doo.aqqle.model.request.LocationRequest;
 import com.doo.aqqle.model.request.ShopRequest;
-import com.doo.aqqle.service.PortalService;
+import com.doo.aqqle.portal.service.PortalService;
 import com.doo.aqqle.model.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.action.search.SearchRequest;
 import org.springframework.web.bind.annotation.*;
 
 

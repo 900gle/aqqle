@@ -35,7 +35,6 @@ public class NaverService implements AqqleCrawler{
 
     private final int CRAWLING_LIMIT = 100;
 
-
     @Timer
     @Override
     public void execute() {
@@ -46,31 +45,68 @@ public class NaverService implements AqqleCrawler{
         keywords.stream().forEach(obj -> {
 
                     try {
-                        int i = 0;
+                        int i = 3;
                         while (true) {
-                            Thread.sleep(3000); //1초 대기
                             String listUrl = site.getUrl(obj.getKeyword(), i);
+                            Thread.sleep(1000); //1초 대기
 
                             Document listDocument = Jsoup.connect(listUrl)
                                     .timeout(9000)
                                     .get();
+                            Thread.sleep(5000); //1초 대기
 
-
-                            Elements list = listDocument.select("div.deallist_wrap>ul.list>li");
-                            log.info("List Size : {}", list.size());
+                            Elements list = listDocument.select("div.basicList_list_basis__uNBZx>div>div.adProduct_item__1zC9h");
                             list.stream().forEach(element -> {
                                 try {
+
                                     Elements title = element.select("div.adProduct_title__amInq>a");
                                     Elements price = element.select("strong.adProduct_price__9gODs>span>span.price_num__S2p_v");
                                     Elements category = element.select("div.adProduct_depth__s_IUT span");
+
                                     List<String> categoryLists = category.stream().map(x -> x.text()).collect(Collectors.toList());
-
                                     Elements image = element.select("a.thumbnail_thumb__Bxb6Z > img");
-
                                     System.out.println(image.attr("src"));
-
                                     Thread.sleep(1000);
+                                    goodsRepository.save(AqqleGoods.builder()
+                                            .keyword(obj.getKeyword())
+                                            .name(title.text())
+                                            .price(price.text().equals("") ? 0 : Integer.parseInt(price.text().replaceAll("[^0-9]", "")))
+                                            .category(category.text())
+                                            .category1(StringUtils.isEmpty(categoryLists.get(0)) ? "" : categoryLists.get(0))
+                                            .category2(StringUtils.isEmpty(categoryLists.get(1)) ? "" : categoryLists.get(1))
+                                            .category3(StringUtils.isEmpty(categoryLists.get(2)) ? "" : categoryLists.get(2))
+                                            .category4(categoryLists.size() < 4 ? "" : categoryLists.get(3))
+                                            .category5(categoryLists.size() < 5 ? "" : categoryLists.get(4))
+                                            .image(image.attr("src"))
+                                            .featureVector(TextEmbedding.getVector(TextEmbeddingDTO.builder().tensorApiUrl(HostUrl.EMBEDDING.getUrl()).keyword(title.text()).build()).toString())
+                                            .popular(1)
+                                            .weight(0.1f)
+                                            .type("C")
+                                            .createdTime(LocalDateTime.now())
+                                            .updatedTime(LocalDateTime.now())
+                                            .build()
+                                    );
 
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+
+                            Elements listsub = listDocument.select("div.basicList_list_basis__uNBZx>div>div.product_item__MDtDF");
+                            log.info("List Size : {}", listsub.size());
+                            listsub.stream().forEach(element -> {
+                                try {
+
+                                    Elements title = element.select("div.product_title__Mmw2K>a");
+                                    Elements price = element.select("strong.product_price__52oO9>span>span.price_num__S2p_v");
+                                    Elements category = element.select("div.product_depth__I4SqY span");
+                                    List<String> categoryLists = category.stream().map(x -> x.text()).collect(Collectors.toList());
+                                    Elements image = element.select("a.thumbnail_thumb__Bxb6Z > img");
+                                    System.out.println(image.attr("src"));
+                                    Thread.sleep(1000);
                                     goodsRepository.save(AqqleGoods.builder()
                                             .keyword(obj.getKeyword())
                                             .name(title.text())
