@@ -21,6 +21,8 @@ management:
 app:
   name: helllo
   color: yellow
+  extract-path: /data/yahoo/static/
+
 
 ---
 spring:

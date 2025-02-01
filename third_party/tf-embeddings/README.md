@@ -7,11 +7,11 @@ conda info --envs
 ```
 ####가상환경 생성
 ```
-conda create --name "900gle" python="3.7"
+conda create --name "apple" python="3.7"
 ```
 ####가상환경 실행
 ```
-conda activate 900gle
+conda activate apple
 ```
 ####설치
 ```

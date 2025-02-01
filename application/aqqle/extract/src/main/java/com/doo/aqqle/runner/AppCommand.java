@@ -13,9 +13,9 @@ import java.util.concurrent.Callable;
 
 @Slf4j
 @Component
-@Command(name = "java -jar indexer.jar", mixinStandardHelpOptions = true,
+@Command(name = "java -jar extract.jar", mixinStandardHelpOptions = true,
         version = "1.0.0",
-        description = "indexer")
+        description = "extract")
 @RequiredArgsConstructor
 public class AppCommand implements Callable<Integer>, IExitCodeExceptionMapper {
 
