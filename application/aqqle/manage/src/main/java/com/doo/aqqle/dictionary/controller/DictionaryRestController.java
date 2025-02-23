@@ -1,6 +1,8 @@
 package com.doo.aqqle.dictionary.controller;
 
 
+import com.doo.aqqle.dto.DictionaryRequest;
+import com.doo.aqqle.dto.KeyWordRequest;
 import com.doo.aqqle.model.CommonResult;
 import com.doo.aqqle.service.DictionarysService;
 import com.doo.aqqle.service.ResponseService;
@@ -25,8 +27,8 @@ public class DictionaryRestController {
     @ApiOperation(value = "키워드 저장", notes = "키워드 저장")
     @CrossOrigin("*")
     @PostMapping("distionarys")
-    public void postData(@ApiParam(value = "words") @RequestParam(value = "words", defaultValue = "", required = true) List<String> words) {
-        dictionarysService.post(words);
+    public void postData(@ApiParam(value = "words") @RequestBody KeyWordRequest keyWordRequest) {
+        dictionarysService.post(keyWordRequest);
     }
 
     @ApiOperation(value = "키워드 조회", notes = "키워드 조회")
@@ -46,6 +48,12 @@ public class DictionaryRestController {
         return responseService.getSingleResult(dictionarysService.put(id, useYn));
     }
 
+    @ApiOperation(value = "사전배포", notes = "사전배포")
+    @CrossOrigin("*")
+    @PostMapping("distionarys/deploy")
+    public CommonResult postDeploy(@RequestBody DictionaryRequest dictionaryRequest) {
+        return responseService.getSingleResult(dictionarysService.deploy(dictionaryRequest));
+    }
 
 
 }

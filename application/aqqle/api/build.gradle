@@ -32,6 +32,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
 
+
+
     // https://mvnrepository.com/artifact/co.elastic.clients/elasticsearch-java
     implementation group: 'co.elastic.clients', name: 'elasticsearch-java', version: '8.8.1'
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
@@ -63,6 +65,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 }
 

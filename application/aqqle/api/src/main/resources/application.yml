@@ -30,6 +30,14 @@ app:
   name: helllo
   color: yellow
 
+
+resilience4j:
+  retry:
+    instances:
+      apiRetry:
+        max-attempts: 3       # 최대 재시도 횟수
+        wait-duration: 2s     # 재시도 간 대기 시간
+
 ---
 spring:
   config:

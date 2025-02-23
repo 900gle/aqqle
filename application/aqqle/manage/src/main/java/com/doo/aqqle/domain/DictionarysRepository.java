@@ -8,5 +8,6 @@ public interface DictionarysRepository extends JpaRepository<Dictionarys, Long> 
 
     List<Dictionarys> findAllByUseYn(String use);
     List<Dictionarys> findAllByWord(String Keyword);
+    List<Dictionarys> findByType(String type);
     Dictionarys findAllById(Long id);
 }

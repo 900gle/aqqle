@@ -1,6 +1,7 @@
 package com.doo.aqqle.logger.controller;
 
 
+import com.doo.aqqle.dto.KeyWordRequest;
 import com.doo.aqqle.service.DictionarysService;
 import com.doo.aqqle.service.ResponseService;
 import io.swagger.annotations.Api;
@@ -24,11 +25,7 @@ public class LoggerRestController {
     @ApiOperation(value = "키워드 저장", notes = "키워드 저장")
     @CrossOrigin("*")
     @PostMapping("logger")
-    public void postData(@ApiParam(value = "words") @RequestParam(value = "words", defaultValue = "", required = true) List<String> words) {
-        dictionarysService.post(words);
+    public void postData(@ApiParam(value = "words") @RequestBody KeyWordRequest keyWordRequest) {
+        dictionarysService.post(keyWordRequest);
     }
-
-
-
-
 }
