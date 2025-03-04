@@ -1,6 +1,8 @@
 package com.doo.aqqle.investment.controller;
 
 
+import com.doo.aqqle.advice.exception.CApiFailException;
+import com.doo.aqqle.investment.service.ExceptionForceService;
 import com.doo.aqqle.investment.service.InvestmentService;
 import com.doo.aqqle.investment.service.StockManageService;
 import com.doo.aqqle.model.stock.StockManageRequest;
@@ -19,6 +21,7 @@ public class StockManageRestController {
 
     private final StockManageService stockManageService;
     private final ResponseService responseService;
+    private final ExceptionForceService exceptionForceService;
 
     @ApiOperation(value = "키워드 저장", notes = "키워드 저장")
     @CrossOrigin("*")
@@ -44,5 +47,14 @@ public class StockManageRestController {
 //        return responseService.getSingleResult(dictionarysService.put(id, useYn));
 //    }
 
+
+    @ApiOperation(value = "익셉션", notes = "익셉션")
+    @CrossOrigin("*")
+    @PostMapping("exception")
+    public void apiFail() {
+
+            exceptionForceService.exceptionExec();
+
+    }
 
 }

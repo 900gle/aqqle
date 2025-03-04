@@ -12,6 +12,9 @@ spring:
       local: local
       dev: dev
       test: test
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
 
   batch:
     job:
