@@ -151,7 +151,7 @@ $ python app/api.py
 --- 
 
 ### API architecture
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBX5BY%2FbtsL47xZgjs%2Fjpbr0bvrutW4dRCIyZkKP1%2Fimg.png)](https://father-lys.tistory.com/160)
+[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbassxZ%2FbtsMB1dGamS%2FogvFCuc8mrcAIlvCKiVN10%2Fimg.png)](https://father-lys.tistory.com/160)
 
  
 ### API cache strategy
