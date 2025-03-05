@@ -8,20 +8,29 @@
 [아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현  
 ([개발잡부 900gle](https://ldh-6019.tistory.com/)의 es7 버전에서 es8 로 신규개발)  
 
-#### 개발환경
-* macOS
-* java 18
-* python 3.7.9
-* elasticsearch 8.8.1
-* kibana 8.8.1
-* logstash 8.8.1
-* kafka
-* redis 
-* tensorflow 2.14
-* OpenCV4.5.0
-* MySql
-* anaconda
-* docker compose
+### Development Stack
+
+```yaml
+OS: macOS
+Languages:
+  - Java: "18"
+  - Python: "3.7.9"
+Frameworks & Libraries:
+  - TensorFlow: "2.14"
+  - OpenCV: "4.5.0"
+Databases:
+  - MySQL
+  - Redis
+Message Brokers:
+  - Kafka
+Search & Logging:
+  - Elasticsearch: "8.8.1"
+  - Kibana: "8.8.1"
+  - Logstash: "8.8.1"
+Virtualization & Env Management:
+  - Anaconda
+  - Docker Compose
+```
 
 ---
 
