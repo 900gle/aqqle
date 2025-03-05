@@ -44,7 +44,11 @@ Virtualization & Env Management:
 ---
 
 ## - Architecture - [phase.1](https://father-lys.tistory.com/20)
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F2jv52%2FbtsFRCYBS54%2FVihtdDGxZt889IlKghaUo0%2Fimg.png)](https://father-lys.tistory.com/53)
+<a href="https://father-lys.tistory.com/53" style="display: block; text-align: center;">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F2jv52%2FbtsFRCYBS54%2FVihtdDGxZt889IlKghaUo0%2Fimg.png" 
+       alt="phase1" 
+       style="max-width: 100%; background: linear-gradient(to right, rgba(255, 0, 150, 0.6), rgba(0, 204, 255, 0.6)); box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; margin: 20px auto;">
+</a>
 
 ## - Project Directory Hierarchy
 
@@ -162,17 +166,23 @@ $ conda activate aqqle
 $ python app/api.py
  ``` 
 --- 
-
 ### API architecture
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbassxZ%2FbtsMB1dGamS%2FogvFCuc8mrcAIlvCKiVN10%2Fimg.png)](https://father-lys.tistory.com/160)
+<a href="https://father-lys.tistory.com/160">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbassxZ%2FbtsMB1dGamS%2FogvFCuc8mrcAIlvCKiVN10%2Fimg.png" 
+       alt="phase1" 
+       style="border-radius: 15px; box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
+</a>
 
- 
 ### API cache strategy
-[![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtPUnZ%2FbtszlGfAoQk%2Fdz18kEBgpeAkTOOQiKHFS1%2Fimg.png)](https://father-lys.tistory.com/55)
+<a href="https://father-lys.tistory.com/55">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtPUnZ%2FbtszlGfAoQk%2Fdz18kEBgpeAkTOOQiKHFS1%2Fimg.png" 
+       alt="phase1" 
+       style="border-radius: 15px; box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease;">
+</a>
 
 ---
 ### Environment Preparation
-<details>
+<details open>
   <summary>presetup</summary>
 
 * [docker 설치](https://ldh-6019.tistory.com/10)
