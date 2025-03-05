@@ -158,9 +158,14 @@ $ python app/api.py
 [![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtPUnZ%2FbtszlGfAoQk%2Fdz18kEBgpeAkTOOQiKHFS1%2Fimg.png)](https://father-lys.tistory.com/55)
 
 ---
-### Preparation
+### Environment Preparation
+<details>
+  <summary>presetup</summary>
+
 * [docker 설치](https://ldh-6019.tistory.com/10)
 * [docker MySql설치](https://father-lys.tistory.com/70)
 * [anaconda 설치](https://father-lys.tistory.com/136)
 * [anaconda tensorflow 설치](https://ldh-6019.tistory.com/118?category=1043090)
 * [docker redis 설치](https://father-lys.tistory.com/41)
+
+</details> 
