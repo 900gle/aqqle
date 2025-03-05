@@ -32,7 +32,7 @@ Databases:
   - Redis
 Message Brokers:
   - Kafka
-Search & Logging:
+Elastic Stack:
   - Elasticsearch: "8.8.1"
   - Kibana: "8.8.1"
   - Logstash: "8.8.1"
@@ -46,7 +46,7 @@ Virtualization & Env Management:
 ## - Architecture - [phase.1](https://father-lys.tistory.com/20)
 [![phase1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F2jv52%2FbtsFRCYBS54%2FVihtdDGxZt889IlKghaUo0%2Fimg.png)](https://father-lys.tistory.com/53)
 
-## - System Architecture & Folder Hierarchy
+## - Project Directory Hierarchy
 
 📦 docker  
 ┣ 📂 elastic  
