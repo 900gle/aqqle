@@ -1,8 +1,17 @@
-# Aqqle
+# Aqqle [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faqqle%2Faqqle&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![OS](https://img.shields.io/badge/macOS-Monterey-000000?style=flat&logo=apple)]()
+[![Java](https://img.shields.io/badge/Java-18-007396?style=flat&logo=openjdk)]()
+[![Python](https://img.shields.io/badge/Python-3.7.9-3776AB?style=flat&logo=python)]()
 [![Elastic Stack version](https://img.shields.io/badge/Elasticsearch-8.8.1-00bfb3?style=flat&logo=elastic-stack)]()
 [![Elastic Stack version](https://img.shields.io/badge/kibana-8.8.1-00bfb3?style=flat&logo=elastic-stack)]()
 [![Elastic Stack version](https://img.shields.io/badge/logstash-8.8.1-00bfb3?style=flat&logo=elastic-stack)]()
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faqqle%2Faqqle&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.14-FF6F00?style=flat&logo=tensorflow)]()  
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.5.0-5C3EE8?style=flat&logo=opencv)]()
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat&logo=mysql)]()
+[![Redis](https://img.shields.io/badge/Redis-7.0-DC382D?style=flat&logo=redis)]()
+[![Kafka](https://img.shields.io/badge/Apache%20Kafka-3.5-231F20?style=flat&logo=apache-kafka)]()
+[![Anaconda](https://img.shields.io/badge/Anaconda-2023.07-44A833?style=flat&logo=anaconda)]() 
+[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-1.29.2-2496ED?style=flat&logo=docker)]()
 ## What is Aqqle?
 텍스트기반의 포털사이트 개인프로젝트 
 [아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현  
