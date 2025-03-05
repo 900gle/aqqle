@@ -48,36 +48,31 @@ Virtualization & Env Management:
 
 ## - Project directory structure
 
-> docker
-> > elastic
->> -  elasticsearch
->> - kibana
->> - logstash
->
-> >kafka
-> 
-> >redis
-> 
-> >mysql  
+📦 docker  
+┣ 📂 elastic  
+┃ ┣ 📂 elasticsearch  
+┃ ┣ 📂 kibana  
+┃ ┗ 📂 logstash  
+┣ 📂 kafka  
+┣ 📂 redis  
+┗ 📂 mysql
 
-> application
-> > aqqle
-> > - api ( 검색용 API )
-> > - common ( 공통파일 )
-> > - consumer ( kafka consumer )
-> > - crawler ( 데이터 크롤러 )
-> > - indexer ( 색인배치 )
-> > - extract ( DB to json file 배치 )
-> > - libs ( OpenCV library )
-> > - manage ( Admin API )
-> > - producer ( kafka producer )
-> > - web ( Aqqle web site )
->
+📦 application  
+┣ 📂 aqqle  
+┃ ┣ 📂 api (검색용 API)  
+┃ ┣ 📂 common (공통파일)  
+┃ ┣ 📂 consumer (Kafka Consumer)  
+┃ ┣ 📂 crawler (데이터 크롤러)  
+┃ ┣ 📂 indexer (색인 배치)  
+┃ ┣ 📂 extract (DB to JSON 파일 변환 배치)  
+┃ ┣ 📂 libs (OpenCV Library)  
+┃ ┣ 📂 manage (Admin API)  
+┃ ┣ 📂 producer (Kafka Producer)  
+┃ ┗ 📂 web (Aqqle Web Site)
 
-
-> third_party
-> >tf-embeddings
->>>api ( Tensorflow text embedding API )
+📦 third_party  
+┗ 📂 tf-embeddings  
+┗ 📂 api (TensorFlow Text Embedding API)
 
 
 ## - Project discription
