@@ -29,11 +29,6 @@ public class HttpConnection {
      */
     public static String sendGet(String url, String charSet, int conTimeOut, int readTimeOut) throws Exception {
 
-
-//        throw new Exception("dddd");
-
-
-
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -50,9 +45,8 @@ public class HttpConnection {
                 response.append(inputLine);
             }
         } catch (IOException e) {
-            System.out.println("111111");
-            System.err.println("❌ API 호출 중 IOException 발생: " + e.getMessage());
-            throw new Exception("API 호출 실패 (IOException)", e); // ✅ 예외를 다시 던짐
+            System.err.println(" API 호출 중 IOException 발생: " + e.getMessage());
+            throw new Exception("API 호출 실패 (IOException)", e); //  예외를 다시 던짐
         }
 
         return response.toString();
