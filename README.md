@@ -1,4 +1,4 @@
-# Aqqle [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Faqqle%2Faqqle&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+# Aqqle 
 [![OS](https://img.shields.io/badge/macOS-Monterey-000000?style=flat&logo=apple)]()
 [![Java](https://img.shields.io/badge/Java-18-007396?style=flat&logo=openjdk)]()
 [![Python](https://img.shields.io/badge/Python-3.7.9-3776AB?style=flat&logo=python)]()
