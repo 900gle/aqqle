@@ -2,6 +2,19 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  management:
+    endpoints:
+      web:
+        exposure:
+          include:
+            health,info
+      health:
+        probes:
+          enabled: true
+        livenessstate:
+          enabled: true
+        readinessstate:
+          enabled: true
   application:
     name: HELLO_SPRING
   profiles:
