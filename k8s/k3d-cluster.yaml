@@ -1,0 +1,21 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: local-k8s
+
+servers: 1
+agents: 1
+
+ports:
+  - port: 8080:30080
+    nodeFilters:
+      - loadbalancer
+
+options:
+  k3d:
+    wait: true
+    timeout: "60s"
+
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

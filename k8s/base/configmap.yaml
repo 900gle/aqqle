@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: app
+data:
+  SPRING_PROFILES_ACTIVE: "local"
+  SERVER_PORT: "8080"
