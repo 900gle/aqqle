@@ -1,6 +1,6 @@
 # Aqqle 
 [![OS](https://img.shields.io/badge/macOS-Monterey-000000?style=flat&logo=apple)]()
-[![Java](https://img.shields.io/badge/Java-18-007396?style=flat&logo=openjdk)]()
+[![Java](https://img.shields.io/badge/Java-17-007396?style=flat&logo=openjdk)]()
 [![Python](https://img.shields.io/badge/Python-3.7.9-3776AB?style=flat&logo=python)]()
 [![Elastic Stack version](https://img.shields.io/badge/Elasticsearch-8.8.1-00bfb3?style=flat&logo=elastic-stack)]()
 [![Elastic Stack version](https://img.shields.io/badge/kibana-8.8.1-00bfb3?style=flat&logo=elastic-stack)]()
@@ -33,7 +33,7 @@
 ```yaml
 OS: macOS
 Languages:
-  - Java: "18"
+  - Java: "17"
   - Python: "3.7.9"
 Frameworks & Libraries:
   - TensorFlow: "2.14"
