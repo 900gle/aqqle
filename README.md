@@ -192,3 +192,29 @@ $ python app/api.py
 * [docker redis 설치](https://father-lys.tistory.com/41)
 
 </details> 
+
+---
+### Claude Code
+이 저장소는 [Claude Code](https://claude.com/claude-code) 사용을 위한 [`CLAUDE.md`](./CLAUDE.md) 파일을 포함하고 있습니다.  
+Claude Code는 세션 시작 시 이 파일을 자동으로 읽어 프로젝트 구조와 빌드 방법을 파악합니다.
+
+<details>
+  <summary>CLAUDE.md 주요 내용</summary>
+
+* 디렉토리 구성 (application / docker / plugin / third_party / k8s)
+* Gradle 빌드·테스트 명령 (모듈 단위 빌드, 단일 테스트 실행, 프로파일 지정 실행)
+* 프로파일별 설정 구조 및 로컬 의존 서비스 (MySQL, Elasticsearch, Redis, Embedding API)
+* 데이터 흐름 : crawler → producer → Kafka → consumer → extract / indexer → Elasticsearch → api → web
+* 모듈별 특징 (common 공유 모듈, picocli 배치 실행, ES 클라이언트 구성, API 캐시 흐름, 예외 처리)
+
+</details>
+
+Usage
+```shell
+# 프로젝트 루트에서 Claude Code 실행
+$ cd ~/aqqle
+$ claude
+
+# CLAUDE.md 재생성/갱신
+> /init
+```
