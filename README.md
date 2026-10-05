@@ -12,6 +12,17 @@
 [![Kafka](https://img.shields.io/badge/Apache%20Kafka-3.5-231F20?style=flat&logo=apache-kafka)]()
 [![Anaconda](https://img.shields.io/badge/Anaconda-2023.07-44A833?style=flat&logo=anaconda)]() 
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-1.29.2-2496ED?style=flat&logo=docker)]()
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.5-6DB33F?style=flat&logo=springboot)]()
+[![Gradle](https://img.shields.io/badge/Gradle-8.1.1-02303A?style=flat&logo=gradle)]()
+[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?style=flat&logo=thymeleaf)]()
+[![Swagger](https://img.shields.io/badge/Swagger-2.5.0-85EA2D?style=flat&logo=swagger)]()
+[![Selenium](https://img.shields.io/badge/Selenium-3.141.0-43B02A?style=flat&logo=selenium)]()
+[![Jsoup](https://img.shields.io/badge/Jsoup-1.16.1-E34F26?style=flat)]()
+[![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask)]()
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white)]()
+[![k3d](https://img.shields.io/badge/k3d-FFC61C?style=flat&logo=k3s&logoColor=black)]()
+[![NGINX Ingress](https://img.shields.io/badge/NGINX%20Ingress-009639?style=flat&logo=nginx)]()
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-D97757?style=flat&logo=claude&logoColor=white)]()
 ## What is Aqqle?
 텍스트기반의 포털사이트 개인프로젝트 
 [아빠는개발자](https://father-lys.tistory.com/category/Aqqle)의 블로그의 내용을 구현  
