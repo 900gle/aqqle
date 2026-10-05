@@ -194,6 +194,60 @@ $ python app/api.py
 </details> 
 
 ---
+### Kubernetes (k3d)
+k3d 로컬 클러스터에 `api` 모듈을 배포합니다. 단계별 상세 설명은 [k8s/README.md](./k8s/README.md) 참고
+
+<details>
+  <summary>구성</summary>
+
+* `k8s/k3d-cluster.yaml` - 클러스터 `local-k8s` (server 1, agent 1, `localhost:8080` → NodePort `30080`)
+* `k8s/base/namespace.yaml` - namespace `app`
+* `k8s/base/configmap.yaml` - `api-config` (SPRING_PROFILES_ACTIVE, SERVER_PORT)
+* `k8s/base/secret.yaml` - `api-secret` (API_KEY, DB_USERNAME, DB_PASSWORD)
+* `k8s/base/deployment.yaml` - `api` (replicas 2, image `api:1.0`, readiness/liveness probe)
+* `k8s/base/service.yaml` - `api-service` (NodePort 30080)
+* `k8s/base/ingress.yaml` - `api-ingress` (host `api.local`, nginx)
+
+</details>
+
+Usage
+```shell
+# 1. api 빌드 및 Docker 이미지 생성
+$ cd ~/aqqle/application/aqqle
+$ ./gradlew :api:clean :api:build
+$ docker build -t api:1.0 api
+
+# 2. 클러스터 생성
+$ cd ~/aqqle
+$ k3d cluster create --config k8s/k3d-cluster.yaml
+$ kubectl get nodes
+
+# 3. 로컬 이미지를 클러스터로 import (imagePullPolicy: Never)
+$ k3d image import api:1.0 -c local-k8s
+
+# 4. ingress-nginx 컨트롤러 설치
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+# 5. 리소스 적용 (namespace 먼저)
+$ kubectl apply -f k8s/base/namespace.yaml
+$ kubectl apply -f k8s/base/
+
+# 6. 확인
+$ kubectl get pods,svc,ingress -n app
+
+# 7. hosts 등록 후 접속
+$ echo "127.0.0.1 api.local" | sudo tee -a /etc/hosts
+$ curl http://api.local:8080
+
+# 클러스터 삭제
+$ k3d cluster delete local-k8s
+```
+
+> **참고**  
+> * `api/build.gradle` 에서 `bootJar` 가 비활성화되어 있어 생성되는 jar 가 실행 가능한 jar 가 아닐 수 있습니다. 배포 전 `bootJar` 활성화 필요  
+> * deployment 의 probe 는 `/actuator/health/*` 를 사용하므로 `api` 에 `spring-boot-starter-actuator` 의존성이 필요합니다
+
+---
 ### Claude Code
 이 저장소는 [Claude Code](https://claude.com/claude-code) 사용을 위한 [`CLAUDE.md`](./CLAUDE.md) 파일을 포함하고 있습니다.  
 Claude Code는 세션 시작 시 이 파일을 자동으로 읽어 프로젝트 구조와 빌드 방법을 파악합니다.
