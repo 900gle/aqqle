@@ -43,7 +43,13 @@ conda activate aqqle && python third_party/tf-embeddings/api/app.py
 데이터 흐름: **crawler** → MySQL / **producer** → Kafka → **consumer** → MySQL → **extract**(DB → JSON) / **indexer**(→ ES, 임베딩 포함) → **api**(검색) → **web**(UI). **manage**는 관리자 API.
 
 - `common`: 모든 앱이 의존하는 공유 라이브러리 (JPA 엔티티/리포지토리, 응답 래퍼 `ResponseService`, `@Timer` AOP, 임베딩 호출 `TextEmbedding`).
-- **배치 앱(`indexer`, `producer`, `extract`)은 picocli 사용** (`runner/AppCommand`). 예: `java -jar indexer.jar -t S` — `-t`는 값 없는 필수 플래그이고, 작업은 위치 인자(`S`, `C`, `I`, `Y`, `T`)로 결정됩니다. 새 작업은 `AppCommand`에 case 추가.
+- **배치 앱(`indexer`, `producer`, `extract`, `crawler`)은 picocli 사용** (`runner/AppCommand`). 예: `java -jar indexer.jar -t S` — `-t`는 값 없는 필수 플래그이고, 작업은 위치 인자로 결정됩니다. 타입 목록과 실행법은 `/run-batch` 스킬 참고.
 - **ES 클라이언트:** `api`, `indexer`, `manage`는 ES 8 Java 클라이언트와 7.17 High Level REST 클라이언트를 함께 사용합니다. 새 쿼리 작성 전 주변 코드가 어떤 클라이언트를 쓰는지 확인하세요.
 - **api:** 컨트롤러 → `portal/service/` → `component/query/` 쿼리 빌더. 집계/필터 캐시는 `component/CacheCompo`(`@Cacheable` + Redis). 예외는 `advice/ExceptionAdvice` + i18n YAML(`exception_{en,ko}.yml`) — `manage`도 동일.
 - `web/src/main/resources`에는 약 2,400개의 벤더 프론트엔드 파일이 있으니 광범위한 검색/수정을 피하세요.
+
+## Claude Code 설정 (`.claude/`)
+
+- `settings.json`: 권한(gradle/git 조회 허용, push·compose down 확인, force push·`rm -rf`·`plugin/`·`web` static 수정 금지)과 `hooks/guard-bash.sh`(ES DELETE·`_delete_by_query`, docker 볼륨 삭제, MySQL DROP/TRUNCATE 차단).
+- 스킬: `/build-test`, `/run-batch`, `/es-check`, `/infra-up`, `/add-batch-job`. 에이전트: `es-query-reviewer`, `spring-reviewer`.
+- 개인 설정은 `.claude/settings.local.json`(gitignore됨)에 둡니다.
