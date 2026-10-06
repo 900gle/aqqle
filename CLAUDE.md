@@ -1,56 +1,49 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+이 파일은 이 저장소에서 작업하는 Claude Code(claude.ai/code)를 위한 가이드입니다.
 
-## Overview
+## 개요
 
-Aqqle is a personal text-based portal/shopping search project built on Elasticsearch 8.8.1. It includes crawlers, a Kafka pipeline, batch indexers, a search API with a Redis cache, an admin API, a Thymeleaf web site, and a Python TensorFlow text-embedding service that is used for vector search. The README and most comments are in Korean.
+Elasticsearch 8.8.1 기반 개인 포털/쇼핑 검색 프로젝트입니다.
+- `application/aqqle/`: Gradle 멀티 모듈 Java 프로젝트 (모든 Java 작업은 여기서).
+- `docker/`: ES/Kibana/Logstash, Kafka, Redis, MySQL docker-compose.
+- `plugin/`: 커스텀 ES 플러그인 (`doo-plugin`, `kr-danalyzer`, `payload-score`) + analysis-nori.
+- `third_party/tf-embeddings/`: Flask + TensorFlow 텍스트 임베딩 API (`http://localhost:5000/vectors`, `common/.../HostUrl.java`).
+- `k8s/`: `api` 모듈 전용 k3d 매니페스트 (`k8s/README.md` 참고).
 
-Top-level layout:
-- `application/aqqle/` is the Gradle multi-module Java project. All Java work happens here.
-- `docker/` has docker-compose stacks for the infrastructure (`elastic/` = ES + Kibana + Logstash, `kafka/`, `redis/`, `mysql/`).
-- `plugin/` has custom Elasticsearch plugin zips (`doo-plugin`, `kr-danalyzer`, `payload-score`) plus the analysis-nori dependency.
-- `third_party/tf-embeddings/` is a Flask + TensorFlow Hub text-embedding API. Java calls it at `http://localhost:5000/vectors` (`common/.../HostUrl.java`).
-- `k8s/` has k3d manifests for deploying only the `api` module locally (step-by-step guide in `k8s/README.md`).
+## 빌드 및 실행
 
-## Build & run
-
-Run all Gradle commands from `application/aqqle/` with the wrapper:
+`application/aqqle/`에서 실행:
 
 ```bash
-cd application/aqqle
-./gradlew build                      # build all modules
-./gradlew :api:build                 # build one module
-./gradlew :api:test                  # test one module (JUnit 5)
-./gradlew :indexer:test --tests 'com.doo.aqqle.IndexerApplicationTests'   # single test class
+./gradlew build
+./gradlew :api:test
+./gradlew :indexer:test --tests 'com.doo.aqqle.IndexerApplicationTests'
 ./gradlew :api:bootRun --args='--spring.profiles.active=local'
 ```
 
-- The root build applies Spring Boot 2.7.5 to every subproject and targets Java 17 (`sourceCompatibility = '17'`). Lombok is wired in for all modules.
-- Several modules (`api`, `indexer`, `extract`, `manage`, `base`, `common`) set `bootJar.enabled = false` and `jar.enabled = true`, so `./gradlew bootJar` produces nothing for them. `api/Dockerfile` copies `build/libs/api-0.0.1-SNAPSHOT.jar`, so check that the jar is actually executable before relying on the k8s flow.
-- There are very few tests. Most modules have only a context-load test, and those tests need the external services listed below to be running.
+- `api`, `indexer`, `extract`, `manage`, `common`, `base`는 `bootJar`가 비활성화되어 있어 실행 가능한 jar가 생성되지 않습니다. `api/Dockerfile`(k8s 배포)은 이 jar를 그대로 복사하므로 주의하세요.
+- 테스트는 대부분 컨텍스트 로드 테스트뿐이며, 외부 서비스(MySQL, ES, Redis)가 실행 중이어야 통과합니다.
 
-Infrastructure (docker-compose):
+인프라 및 임베딩 서비스:
 ```bash
-cd docker/elastic && docker compose up -d --build     # ES/Kibana/Logstash 8.8.1
+cd docker/elastic && docker compose up -d --build
 cd docker/kafka && docker compose -f kafka-full.yml up -d --build
+conda activate aqqle && python third_party/tf-embeddings/api/app.py
 ```
-Embedding service: `conda activate aqqle && python third_party/tf-embeddings/api/app.py`
 
-## Configuration
+## 설정
 
-- Each app's `application.yml` holds several profile documents separated by `---` (`local`, `dev`). Some modules (`consumer`, `crawler`, `producer`, `web`) use separate `application-{profile}.yml` files instead. Select the profile with `spring.profiles.active`.
-- The local defaults expect MySQL at `localhost:3306/shop`, Elasticsearch at `localhost:9200` (user `elastic`), and Redis at `localhost:6379`.
-- ES index settings and mappings are JSON resources in `indexer/src/main/resources/` (`setting.json`/`mapping.json`, plus `investment_*` and `yahoo_*` variants). They depend on the custom analyzers from `plugin/` and on dictionary files in `{ES_HOME}/config/` (`stopFilter.txt`, `synonymsFilter.txt`, `user_dictionary.txt`).
+- 프로파일은 `local`, `dev`. 대부분 모듈은 `application.yml` 하나에 `---`로 구분하고, `consumer`, `crawler`, `producer`, `web`은 `application-{profile}.yml`로 분리되어 있습니다.
+- 로컬 기본값: MySQL `localhost:3306/shop`, ES `localhost:9200`(user `elastic`), Redis `localhost:6379`.
+- ES 인덱스 setting/mapping은 `indexer/src/main/resources/`의 JSON이며, `plugin/`의 커스텀 분석기와 `{ES_HOME}/config/`의 사전 파일(`stopFilter.txt`, `synonymsFilter.txt`, `user_dictionary.txt`)에 의존합니다.
 
-## Architecture
+## 아키텍처
 
-Data flow: **crawler** (Selenium/Jsoup scrapes shopping and news sites) → MySQL and/or **producer** → Kafka → **consumer** → MySQL → **extract** (DB → JSON files) / **indexer** (DB/files → Elasticsearch, with text embeddings from the tf-embeddings service) → **api** (search) → **web** (UI). **manage** is the admin API, used for things like managing crawl keywords.
+데이터 흐름: **crawler** → MySQL / **producer** → Kafka → **consumer** → MySQL → **extract**(DB → JSON) / **indexer**(→ ES, 임베딩 포함) → **api**(검색) → **web**(UI). **manage**는 관리자 API.
 
-Module notes:
-- `common` is a shared library jar (no boot app). It holds JPA entities and repositories (`domain/`, `repository/`), DTOs, response wrappers (`model/CommonResult`, `SingleResult`, `ListResult`, `service/ResponseService`), the `@Timer` annotation with its AOP aspect, and `TextEmbedding`/`SendRestUtil` for calling the embedding API. Every app module depends on `project(':common')`. `base` duplicates `common`'s dependencies and has no source.
-- **Batch apps use picocli.** `indexer`, `producer`, and `extract` each have `runner/AppCommandLineRunner` + `runner/AppCommand`. The positional argument picks the job. For example, indexer types are `S` (shop goods), `C`, `I` (investment), `Y` (yahoo stock data), and `T` (test), run as `java -jar indexer.jar -t S`. To add a new batch job, add a case to `AppCommand` and a service.
-- **Elasticsearch clients:** `api`, `indexer`, and `manage` include both the ES 8 Java client (`co.elastic.clients:elasticsearch-java`) and the 7.17 High Level REST client. Each module has its own `config/Client`, `HighlevelClient`, and `LowLevelClient` beans. Look at which one the surrounding code uses before writing a new query.
-- **api request flow:** controllers (`portal/`, `shop/`, `location/`, `cache/`, `general/`) → services in `portal/service/` → query builders in `component/query/` (`ShopSearchQuery`, `LocationSearchQuery`). Results are wrapped through `ResponseService`. Aggregation and filter caches live in `component/CacheCompo` (Spring `@Cacheable` with keys from `common/CacheKey`, backed by Redis via `RedisConfig`). `PortalService` publishes request events that are handled `@Async` in `PortalEventHandler`. Spring Retry is used in `RetryService`.
-- **Error handling:** custom `C*Exception` classes in `advice/exception/` are mapped by `advice/ExceptionAdvice`. The messages come from YAML i18n bundles (`resources/i18n/exception_{en,ko}.yml`, loaded by `MessageConfiguration`). `manage` uses the same pattern.
-- `web` is a Thymeleaf app with a large vendored front-end template under `src/main/resources` (about 2,400 files). Avoid sweeping searches or edits in that directory.
+- `common`: 모든 앱이 의존하는 공유 라이브러리 (JPA 엔티티/리포지토리, 응답 래퍼 `ResponseService`, `@Timer` AOP, 임베딩 호출 `TextEmbedding`).
+- **배치 앱(`indexer`, `producer`, `extract`)은 picocli 사용** (`runner/AppCommand`). 예: `java -jar indexer.jar -t S` — `-t`는 값 없는 필수 플래그이고, 작업은 위치 인자(`S`, `C`, `I`, `Y`, `T`)로 결정됩니다. 새 작업은 `AppCommand`에 case 추가.
+- **ES 클라이언트:** `api`, `indexer`, `manage`는 ES 8 Java 클라이언트와 7.17 High Level REST 클라이언트를 함께 사용합니다. 새 쿼리 작성 전 주변 코드가 어떤 클라이언트를 쓰는지 확인하세요.
+- **api:** 컨트롤러 → `portal/service/` → `component/query/` 쿼리 빌더. 집계/필터 캐시는 `component/CacheCompo`(`@Cacheable` + Redis). 예외는 `advice/ExceptionAdvice` + i18n YAML(`exception_{en,ko}.yml`) — `manage`도 동일.
+- `web/src/main/resources`에는 약 2,400개의 벤더 프론트엔드 파일이 있으니 광범위한 검색/수정을 피하세요.
