@@ -283,3 +283,57 @@ $ claude
 # CLAUDE.md 재생성/갱신
 > /init
 ```
+
+#### `.claude/` 프로젝트 설정
+팀 공용 Claude Code 설정(권한, 훅, 스킬, 서브에이전트)을 `.claude/` 에 포함하고 있습니다.
+
+```
+.claude/
+├── settings.json              # 권한 규칙 + 훅 등록
+├── hooks/guard-bash.sh        # 위험 명령 차단 (PreToolUse)
+├── skills/                    # /슬래시 명령으로 실행하는 작업 절차
+└── agents/                    # 리뷰용 서브에이전트
+```
+
+**권한 (`settings.json`)**
+
+| 구분 | 대상 |
+|---|---|
+| 자동 허용 | `./gradlew`, git 조회(status/diff/log/show/branch), `docker ps/logs`, `kubectl get/describe/logs` |
+| 실행 전 확인 | `git push`, `docker compose down`, `kubectl delete`, `k3d cluster delete` |
+| 금지 | force push, `git reset --hard`, `rm -rf`, `.env` 읽기, `plugin/` 및 `web` static 수정 |
+
+**훅 (`hooks/guard-bash.sh`)** : 아래 명령은 실행 전에 차단됩니다.
+* Elasticsearch `DELETE` 요청, `_delete_by_query`
+* `docker compose down -v`, `docker volume rm/prune` (ES/MySQL 데이터 유실 방지)
+* MySQL `DROP TABLE/DATABASE`, `TRUNCATE TABLE`
+
+**스킬**
+
+| 명령 | 설명 |
+|---|---|
+| `/build-test` | 변경된 모듈을 찾아 컴파일·테스트 (`common` 변경 시 전체 빌드) |
+| `/run-batch <module> <type> [profile]` | indexer / extract / crawler / producer 배치 실행 (`bootRun` + picocli 인자) |
+| `/es-check [index]` | ES 클러스터·인덱스·매핑·플러그인 점검 (읽기 전용, `ES_PASSWORD` 환경변수 사용) |
+| `/infra-up` | docker 인프라 기동 및 ES / Redis / MySQL / 임베딩 API 헬스 체크 |
+| `/add-batch-job <module> <type> <설명>` | 새 배치 작업 타입 추가 절차 |
+
+**서브에이전트**
+* `es-query-reviewer` : ES 쿼리·매핑·분석기·벡터 차원·캐시 키 리뷰
+* `spring-reviewer` : 응답 래핑, 예외/i18n, `common` 변경 영향, `@Async`/`@Retryable`, 프로파일 설정 리뷰
+
+Usage
+```shell
+# ES 점검 스킬은 비밀번호를 환경변수로 받습니다
+$ export ES_PASSWORD=<elastic 비밀번호>
+
+# 상품 색인 실행
+> /run-batch indexer S local
+
+# 변경분 리뷰
+> es-query-reviewer 로 이번 변경 리뷰해줘
+```
+
+> **참고**  
+> * 개인 설정은 `.claude/settings.local.json` 에 작성합니다 (gitignore 처리됨)
+> * 배치 모듈의 `getExitCode` 는 예외 발생 시에도 0 을 반환하므로, 성공 여부는 로그로 확인해야 합니다
