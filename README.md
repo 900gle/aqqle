@@ -101,7 +101,7 @@ Virtualization & Env Management:
         * logstash
     * [kafka](https://ldh-6019.tistory.com/category/Kafka)
     * [Redis](https://ldh-6019.tistory.com/category/Kafka)
-    * [MySql](https://father-lys.tistory.com/70)
+    * [MySql](https://ldh-6019.tistory.com/631)
 
 #### Elasticsearch pluin
 >analysis-nori - nori 한글형태소분석 플러그인   
