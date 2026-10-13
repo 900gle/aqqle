@@ -144,6 +144,13 @@ kafka Usage
 docker compose -f kafka-full.yml up -d --build
 ```
 
+시스템별 실행 스크립트 ([docker/README.md](docker/README.md))
+```shell
+# crawler: MySQL / indexer: ES + MySQL + 임베딩 API(백그라운드) / manage: ES + MySQL
+./docker/scripts/<crawler|indexer|manage>-up.sh     # 기동
+./docker/scripts/<crawler|indexer|manage>-down.sh   # 중지 (stop, 데이터 유지)
+```
+
 
 1. java : aqqle 프로젝트
 * java
